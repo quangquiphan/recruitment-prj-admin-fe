@@ -1,0 +1,79 @@
+<div style="padding-top: 60px;" class="relative">
+    <i (click)="onOpen('')" class="pi pi-plus-circle add cursor-pointer"></i>
+    <div class="flex w-full justify-content-center align-items-center">
+        <div class="w-full company-member">
+            <div class="flex w-full justify-content-between align-items-center">
+                <div class="flex w-full justify-content-start align-items-center">
+                    <div
+                        class="icon flex align-items-center justify-content-center icon-text">
+                        <!-- <span class="">QP</span> -->
+                        <img src="../../../../../assets/images/TopWork-logo.png" width="100%" alt="">
+                    </div>
+                    <div>
+                        <h3>Member name</h3>
+
+                        <h4>example@gmail.com</h4>
+
+                        <p>role</p>
+                    </div>
+                </div>
+                <i class="pi pi-pencil cursor-pointer" (click)="onOpen('ashdnvcjlsdh')"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-paginator (onPageChange)="onPageChange($event)" [rows]="paging.pageSize" [totalRecords]="3" [first]="first"></p-paginator>
+
+<p-dialog [(visible)]="showMemberSetting" (onHide)="showMemberSetting = false" 
+    [header]="'Menber company'" class="custom-dialog">
+    <form [formGroup]="accountForm">
+        <div class="flex justify-content-between">
+            <div class="flex flex-column">
+                <label class="font-bold" for="firstName">
+                    {{ 'label.first_name' | translate }}
+                </label>
+                <input pInputText type="text" id="firstName" formControlName="firstName">
+            </div>
+
+            <div class="flex flex-column">
+                <label class="font-bold" for="lastName">
+                    {{ 'label.last_name' | translate }}
+                </label>
+                <input pInputText type="text" id="lastName" formControlName="lastName">
+            </div>
+        </div>
+
+        <div class="flex flex-column">
+            <label class="font-bold" for="email">
+                {{ 'label.email' | translate }}
+            </label>
+            <input pInputText type="text" id="email" formControlName="email">
+        </div>
+
+        <div class="font-bold">Role</div>
+
+        <div class="role flex align-items-center" 
+            [ngClass]="accountForm.value.role == constant.USER_ROLE.ADMIN_COMPANY?'role-active' : ''">
+            <p-radioButton name="role" [value]="constant.USER_ROLE.ADMIN_COMPANY" inputId="admin" 
+               formControlName="role"></p-radioButton>
+            <label for="admin">ADMIN</label>
+        </div>
+
+        <div class="role flex align-items-center" style="margin-bottom: 30px;"
+            [ngClass]="accountForm.value.role == constant.USER_ROLE.COMPANY_MEMBER?'role-active' : ''">
+            <p-radioButton name="role" inputId="member" [value]="constant.USER_ROLE.COMPANY_MEMBER"
+                
+               formControlName="role"></p-radioButton>
+            <label for="member">Member</label>
+        </div>
+
+        <div class="flex justify-content-center align-items-center">
+            <p-button [label]="'button.save' | translate"
+                (onClick)="onSubmit()"></p-button>
+            <p-button class="btn-cancel" (onClick)="onCancel()" 
+                [label]="'button.cancel' | translate"></p-button>
+        </div>
+    </form>
+</p-dialog>
+

@@ -1,0 +1,51 @@
+.company-job {
+    background-color: var(--primary-50);
+    padding: 20px;
+    border: 1px solid var(--primary-500);
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    & > div {
+        & > div, & > h4, & > span {
+            margin-bottom: 5px;
+        }
+
+        & > div:last-child {
+            margin-bottom: 0;
+
+            p-chip {
+                margin: 0 10px 5px 0;
+
+                .skill-name {
+                    padding: 2px 4px 2px 0;
+                    border-right: 2px solid var(--primary-700);
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+}
+
+.company-job:last-child {
+    margin-bottom: 0;
+}
+
+.company-job-expiry {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-500);
+
+    h3, h4, span, i.pi {
+        color: var(--gray-800);
+    }
+
+    .skill-name {
+        border-right: 2px solid var(--gray-700) !important;
+    }
+}
+
+:host::ng-deep{
+    .company-job-expiry .p-chip {
+        background-color: var(--gray-300) !important;
+        // color: var(--primary-700) !important;
+    }    
+}

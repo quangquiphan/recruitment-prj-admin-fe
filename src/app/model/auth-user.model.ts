@@ -6,6 +6,6 @@ export interface AuthUser {
     email: string,
     phoneNumber: string,
     status: string,
-    userRole: string,
+    role: string,
     companyId: string
 }

@@ -1,5 +1,7 @@
-<div class="w-full flex justify-content-center align-items-center sign-in">
-    <form>
+<div class="w-full flex flex-column justify-content-center align-items-center sign-in">
+    <img src="../../../assets/images/TopWork-logo.png" alt="TopWorks" width="130px" 
+        style="margin-bottom: 30px;">
+    <form [formGroup]="signInForm"> 
         <span class="w-full flex justify-content-center font-size-13 margin-bottom-10">
             {{ 'label.sign_in_with_email' | translate}}
         </span>
@@ -8,14 +10,14 @@
             <label for="email" class="font-size-14 font-bold" style="margin-bottom: 2px;">
                 {{ 'label.email' | translate }}
             </label>
-            <input pInputText id="email">
+            <input pInputText formControlName="email" id="email">
         </div>
 
         <div class="flex flex-column w-full margin-bottom-10 relative">
             <label for="pwd" class="font-size-14 font-bold" style="margin-bottom: 2px;">
                 {{ 'label.password' | translate }}
             </label>
-            <p-password id="pwd" class="w-full"></p-password>
+            <p-password inputId="pwd" formControlName="passwordHash" class="w-full pwd"></p-password>
 
             <a class="font-size-13 forgot-pwd cursor-pointer" href="#">
                 {{ 'label.forgot_password' | translate }}
@@ -25,7 +27,7 @@
         <div class="w-full flex justify-content-between align-items-end"
              style="margin-bottom: 25px;">
             <div class="flex align-items-end">
-                <p-checkbox id="isKeep"></p-checkbox>
+                <p-checkbox inputId="isKeep" [value]="true" class="isKeep" formControlName="keepLogin"></p-checkbox>
                 <label for="isKeep" class="font-size-14">
                     {{ 'label.keep_login' | translate }}
                 </label>
@@ -33,7 +35,8 @@
         </div>
 
         <div class="flex justify-content-center">
-            <p-button [label]="'button.sign_in' | translate"></p-button>
+            <p-button (onClick)="onSignIn()" [disabled]="signInForm.invalid" 
+                [label]="'button.sign_in' | translate"></p-button>
         </div>
     </form>
 </div>

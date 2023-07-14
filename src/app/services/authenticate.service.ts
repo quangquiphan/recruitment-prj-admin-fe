@@ -6,7 +6,7 @@ import AppConstant from '../utilities/app-constant';
 import HttpResponse from '../model/http.response.model';
 
 
-let _prefix = "/auth";
+let _prefix = "/authenticated";
 
 @Injectable({providedIn: 'root'})
 
@@ -65,13 +65,23 @@ export class AuthenticateService {
     }
 
     logout(): Observable<HttpResponse> {
-        return this.http.delete<HttpResponse>(`${_prefix}/sign-out`).pipe(
+        return this.http.delete<HttpResponse>(`${_prefix}/logout`).pipe(
             map(
                 (result) => {
                     return result;
                 }
             )
         );
+    }
+
+    changePassword(id: string, params: any) : Observable<HttpResponse> {
+        return this.http.put<HttpResponse>(`${_prefix}/${id}`, params).pipe(
+            map(
+                (result) => {
+                    return result;
+                }
+            )
+        )
     }
 }
 

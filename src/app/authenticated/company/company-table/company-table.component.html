@@ -1,0 +1,41 @@
+<div class="header">
+    <h3>Company</h3>
+</div>
+
+
+<div class="company-table">
+    <p-table class="table" [value]="companies" [totalRecords]="totalElements"
+    [rows]="paging.pageSize" [paginator]="true" [rowHover]="true" 
+    [lazy]="true" (onLazyLoad)="onLoadData($event)"
+     responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Company name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Size</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+            <tr (click)="onNavigateToDetail(item.id)" class="cursor-pointer">
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.id }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.companyName }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.email }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.phoneNumber }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.size }}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

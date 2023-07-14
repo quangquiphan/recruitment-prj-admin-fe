@@ -1,0 +1,56 @@
+<div class="header">
+    <h3>Candidate</h3>
+</div>
+
+<div class="candidate-table">
+    <p-table class="table" [value]="candidates" 
+    [rows]="paging.pageSize" [paginator]="true"
+    [(first)]="first" [lazy]="true" [rowHover]="true"
+    [totalRecords]="totalPages" (onLazyLoad)="onLoadData($event)" 
+    [paginator]="totalPages>1" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>year experience</th>
+                <th>email</th>
+                <th>phone number</th>
+                <th>cv</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+            <tr (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.id }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.firstName }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.lastName }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.yearExperience }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.email }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.phoneNumber }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                   <i *ngIf="item.cv" class="pi pi-file"></i>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
+    [showHeader]="false">
+    <i class="lose-popup pi pi-times-circle cursor-pointer" (click)="showUserDetail = false"></i>
+    <app-candidate-detail [userId]="id"></app-candidate-detail>
+</p-dialog>

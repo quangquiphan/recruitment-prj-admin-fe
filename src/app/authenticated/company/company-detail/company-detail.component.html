@@ -1,0 +1,25 @@
+<div class="w-fit-content">
+    <div class="company-info flex align-items-center justify-content-start">
+        <div class="cursor-pointer" (click)="onBack()">
+            <i class="pi pi-arrow-left" style="margin-right: 30px;"></i>
+        </div>
+        <div class="flex align-items-end">
+            <i class="pi pi-building" *ngIf="false" style="margin: 0 10px 0 !important;"></i>
+            <div class="icon flex justify-content-start align-items-center">
+                <img src="../../../../assets/images/TopWork-logo.png" width="100%" alt="">
+            </div>
+            <h2>Company name</h2>
+        </div>
+    </div>
+    
+    <div class="company-tabs">
+        <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
+            <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
+                [header]="tab.label">
+                <app-company-general *ngIf="selectedTab  === 0"></app-company-general>
+                <app-company-job *ngIf="selectedTab === 1"></app-company-job>
+                <app-company-account *ngIf="selectedTab === 2"></app-company-account>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

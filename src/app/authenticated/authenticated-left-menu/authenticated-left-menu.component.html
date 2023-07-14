@@ -1,0 +1,35 @@
+<div class="authenticated flex w-full">
+    <div class="left-menu flex flex-column justify-content-between">
+        <div class="flex flex-column align-items-center">
+            <img src="../../../assets/images/TopWork-logo.png" alt="TopWorks">
+
+            <ul class="flex flex-column w-full">
+                <li class="item cursor-pointer" *ngFor="let item of leftMenuItems;" 
+                    [ngClass]="selectItem == item.path?'item-active' : ''"
+                    (click)="onSelectItem(item)" [routerLink]="item.path">
+                    <i [class]="item.icon" style="margin-right: 10px;"></i>
+                    <span>{{ item.label | translate }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info flex align-items-center">
+            <div *ngIf="authUser?.avatar == null || authUser?.avatar == ''" 
+                class="icon icon-text flex justify-content-center align-items-center">
+                {{ parseAvatarText(authUser) }}
+            </div>
+            <div *ngIf="authUser?.avatar" class="icon flex justify-content-center align-items-center">
+                <img src="../../../assets/images/TopWork-logo.png" alt="avatar">
+            </div>
+            <div class="flex flex-column justify-content-start">
+                <div class="font-size-14 font-bold name">{{ parserName(authUser) }}</div>
+                <div class="deliver"></div>
+                <div class="font-size-13 text-ellipsis" style="width: 170px;">{{authUser?.email}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="component overflow-x-auto">
+        <router-outlet></router-outlet>
+    </div>
+</div>

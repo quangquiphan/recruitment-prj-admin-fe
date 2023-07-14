@@ -1,0 +1,29 @@
+<div class="w-full company-job" *ngFor="let job of jobs"
+    [ngClass]="checkExpiryDateJob(job.expiryDate)?'company-job-expiry' : ''">
+    <div class="flex flex-column w-full">
+        <div class="flex w-full justify-content-between align-items-center">
+            <h3>{{ job.jobName }}</h3>
+
+            <div class="flex align-items-center">
+                <i class="pi pi-clock" style="margin-right: 10px;"></i>
+                <span>{{ job.expiryDate }}</span>
+            </div>
+        </div>
+        <h4>{{ job.position }}</h4>
+        <span>{{ job.salary }}</span>
+        <div class="flex flex-wrap">
+            <p-chip *ngFor="let skill of job.skills" class="flex align-items-center">
+                <span class="skill-name">{{ skill.name }}</span>
+                <span>{{ skill.level }}</span>
+            </p-chip>
+
+            <p-chip *ngFor="let lang of job.languages" class="flex align-items-center">
+                <span class="skill-name">{{ lang.name }}</span>
+                <span>{{ lang.level }}</span>
+            </p-chip>
+        </div>
+    </div>
+</div>
+
+<p-paginator (onPageChange)="onPageChange($event)" [rows]="paging.pageSize" [totalRecords]="3" 
+    [first]="first"></p-paginator>

@@ -12,7 +12,7 @@
     margin-bottom: 10px !important;
 }
 
-#isKeep {
+.isKeep {
     margin-right: 5px;
 }
 
@@ -25,7 +25,7 @@ form {
 }
 
 :host::ng-deep {
-    #pwd {
+    .pwd {
         .p-password, .p-inputtext {
             width: 100%;
         }

@@ -31,6 +31,17 @@ const AppConstant = Object.freeze({
       ACTIVE: "ACTIVE",
       IN_ACTIVE: "IN_ACTIVE"
     },
+    JOB_STATUS: {
+      MATCHES: "MATCHES",
+      APPLIED: "APPLIED"
+    },
+    USER_ROLE: {
+      ADMIN: "ADMIN",
+      ADMIN_COMPANY: "ADMIN_COMPANY",
+      ADMIN_COMPANY_MEMBER: "ADMIN_COMPANY_MEMBER",
+      COMPANY_MEMBER: "COMPANY_MEMBER",
+      USER: "USER"
+    }
 });
 
 export default AppConstant;

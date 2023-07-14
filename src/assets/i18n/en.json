@@ -1,12 +1,21 @@
 {
     "label" : {
+        "first_name": "First name",
+        "last_name": "Last name",
         "email": "Email",
         "password": "Password",
-        "keep_login": "Keep login",
         "sign_in_with_email": "Sign in with email",
-        "forgot_password": "Forgot password?"
+        "forgot_password": "Forgot password?",
+        "keep_login": "Keep login",
+        "company": "Company",
+        "candidate": "Candidate",
+        "job": "Job"
     },
     "button": {
-        "sign_in": "Sign in"
+        "sign_in": "Sign in",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete"
     }
 }

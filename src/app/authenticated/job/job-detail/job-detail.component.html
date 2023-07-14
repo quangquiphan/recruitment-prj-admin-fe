@@ -1,0 +1,28 @@
+<div class="w-fit-content">
+    <div class="job-info flex align-items-start justify-content-start">
+        <div class="cursor-pointer" (click)="onBack()">
+            <i class="pi pi-arrow-left" style="margin-right: 30px;"></i>
+        </div>
+        <div class="flex flex-column">
+            <h2>Job name</h2>
+            <h3>job position</h3>
+            <span>salary</span>
+            <div class="flex flex-wrap">
+                <p-chip>
+                    skill
+                </p-chip>
+                <p-chip>
+                    language
+                </p-chip>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-job">
+        <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
+            <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" [header]="tab.label">
+                <app-user-job-applicant [jobStatus]="jobStatus"></app-user-job-applicant>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

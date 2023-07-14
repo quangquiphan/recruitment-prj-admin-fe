@@ -1,0 +1,20 @@
+.candidate-table {
+    padding: 30px 20px;
+}
+
+.lose-popup {
+    position: fixed;
+    top: 20px;
+    right: 35px;
+}
+
+.lose-popup.pi {
+    font-size: 2rem !important;
+    color: var(--primary-600);
+}
+
+:host::ng-deep {
+    .user-detail-popup .p-dialog-mask {
+        background-color: rgba(69, 97, 97, 0.7) !important;
+    }
+}

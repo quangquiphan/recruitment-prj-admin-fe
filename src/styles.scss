@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
 html {
     --font-family: ubuntu, sans-serif, serif;
     --white: #ffffff;
@@ -158,11 +159,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--primary-700);
 }
 
-h1, h2, h3, h4, h5, h6, p, ul {
+h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
     margin: 0;
     padding: 0;
+    color: var(--primary-700);
 }
 
 .font-size-10 {
@@ -197,8 +200,57 @@ h1, h2, h3, h4, h5, h6, p, ul {
     font-size: 25px !important;
 }
 
-.top-left-radius {
-    border-top-left-radius: 30px;
+.w-fit-content {
+    min-width: fit-content !important;
+}
+
+.deliver {
+    border: 1px solid var(--primary-700);
+    border-radius: 50%;
+    width: 100%;
+}
+
+.header {
+    padding: 65px 20px 20px;
+    background-color: var(--primary-50);
+}
+
+.text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.p-chip {
+    background-color: var(--primary-100) !important;
+    color: var(--primary-700) !important;
+    padding: 4px 0.75rem !important;
+}
+
+.pi {
+    font-size: 1.35rem !important;
+}
+
+.p-tabview .p-tabview-nav {
+    background: #ffffff !important;
+    border: 1px solid white !important;
+    justify-content: end !important;
+    padding: 0 20px;
+
+    li .p-tabview-nav-link {
+        border-color: transparent transparent var(--primary-100) transparent !important;
+        color: var(--primary-500) !important;
+        border-width: 0 0 3px 0 !important;
+        padding: 0.65rem 1.25rem !important;
+        font-weight: 300 !important;
+    }
+
+    li.p-highlight .p-tabview-nav-link {
+        background: #ffffff !important;
+        border-color: var(--blue-600) !important;
+        color: var(--blue-700) !important;
+        font-weight: 700 !important;
+    }
 }
 
 .p-dialog { 
@@ -208,7 +260,7 @@ h1, h2, h3, h4, h5, h6, p, ul {
         background-color: var(--primary-50) !important;
 
         .p-dialog-header-icon {
-            color: var(--primary-900) !important;
+            color: var(--primary-700) !important;
             font-weight: 900 !important;
         }
 
@@ -232,18 +284,32 @@ h1, h2, h3, h4, h5, h6, p, ul {
             min-width: 512px;
         }
     }
+
+    .p-dialog-mask {
+        background: rgba(85, 97, 97, 0.7);
+    }
 }
 
 .table {
     .p-datatable>.p-datatable-wrapper {
-        border: 1px solid var(--blue-400) !important;
         border-radius: 5px;
+        border-width: 1px 1px 0 1px;
+        border-style: solid;
+        border-color: var(--blue-400);
 
-        .p-datatable-thead  th {
-            padding: 0.6rem 1rem !important;
+        .p-datatable-thead > tr > th {
             background-color: var(--blue-100);
+        }
+
+        .p-datatable-tbody > tr > td {
+            border-color: var(--blue-400);
+        }
+
+        .p-datatable-thead > tr > th, .p-datatable-tbody > tr > td {
+            padding: 0.6rem 1rem !important;
             font-size: 13px;
-            color: var(--gray-900);
+            color: var(--blue-900);
+            
         }
     }
 }
@@ -255,6 +321,14 @@ h1, h2, h3, h4, h5, h6, p, ul {
     font-size: 14px !important;
     font-weight: 700 !important;
     border-radius: 25px !important;
+
+    .p-button-label {
+        color: var(--white);
+    }
+}
+
+.p-button:enabled:hover {
+    background-color: var(--blue-800) !important;
 }
 
 .btn-delete {
