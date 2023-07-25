@@ -17,7 +17,6 @@
         width: 50px;
         border: 1px solid var(--blue-800);
         border-radius: 50%;
-        padding: 5px;
         margin-right: 20px;
     }
 }
@@ -26,8 +25,6 @@
     padding: 30px 20px;
 }
 
-:host::ng-deep {
-    .p-tabview-panels {
-        min-width: 830px;
-    }
+.p-tabview-panels {
+    min-width: 830px;
 }

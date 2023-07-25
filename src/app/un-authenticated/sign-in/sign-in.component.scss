@@ -26,8 +26,10 @@ form {
 
 :host::ng-deep {
     .pwd {
-        .p-password, .p-inputtext {
+        .p-password,
+        .p-inputtext {
             width: 100%;
         }
     }
 }
+

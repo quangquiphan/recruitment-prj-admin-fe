@@ -17,7 +17,7 @@
     
         <div>
             <h1 class="boder-text flex align-items-center">
-                <i class="pi pi-bookmark"></i>
+                <img class="i" src="../../../../assets/images/icons/archive-minus.svg" alt="">
                 <span>summary</span>
             </h1>
     
@@ -27,41 +27,41 @@
                 Aspernatur atque accusamus similique at vitae ea soluta harum.</p>
         </div>
     
-        <div class="w-full flex info-edu">
+        <div class="w-full flex info-edu justify-content-between">
             <div>
                 <h1 class="boder-text flex align-items-center">
-                    <i class="pi pi-info-circle"></i>
+                    <img src="../../../../assets/images/icons/info-circle.svg" alt="" class="i">
                     <span>Information</span>
                 </h1>
                 <div class="flex align-items-center">
-                    <i style="margin: 0 5px 5px 0;" class="pi pi-globe"></i>
+                    <img src="../../../../assets/images/icons/gender.svg" style="margin: 0 5px 5px 0;" alt="">
                     <p>MALE</p>
                 </div>
         
                 <div class="flex align-items-center">
-                    <i style="margin: 0 5px 5px 0;" class="pi pi-phone"></i>
+                    <img src="../../../../assets/images/icons/call.svg" style="margin: 0 5px 5px 0;" alt="">
                     <p>0123xxxx</p>
                 </div>
         
                 <div class="flex align-items-center">
-                    <i style="margin: 0 5px 5px 0;" class="pi pi-envelope"></i>
+                    <img src="../../../../assets/images/icons/sms.svg" style="margin: 0 5px 5px 0;" alt="">
                     <p>example@gmail.com</p>
                 </div>
         
                 <div class="flex align-items-center">
-                    <i style="margin: 0 5px 5px 0;" class="pi pi-github"></i>
+                    <img src="../../../../assets/images/icons/global.svg" style="margin: 0 5px 5px 0;" alt="">
                     <p>httpS://github.com/aghfdgsvx</p>
                 </div>
         
                 <div class="flex align-items-center">
-                    <i style="margin: 0 5px 5px 0;" class="pi pi-map-marker"></i>
+                    <img src="../../../../assets/images/icons/location.svg" style="margin: 0 5px 5px 0;" alt="">
                     <p>sgs asdfsed </p>
                 </div>
             </div>
             
             <div>
                 <h1 class="boder-text flex align-items-center">
-                    <i class="pi pi-building"></i>
+                    <img src="../../../../assets/images/icons/buliding.svg" alt="">
                     <span>Education</span>
                 </h1>
 
@@ -81,7 +81,7 @@
         
         <div class="w-full work-history">
             <h1 class="boder-text flex align-items-center">
-                <i class="pi pi-briefcase"></i>
+                <img src="../../../../assets/images/icons/briefcase.svg" alt="">
                 <span>Work history</span>
             </h1>
     
@@ -90,8 +90,8 @@
                 <span class="line-node"></span>
                 <div class="w-full workplace">
                     <div class="flex w-full justify-content-between align-items-center">
-                        <div class="flex align-items-start">
-                            <i class="pi pi-building" style="margin-right: 5px;"></i>
+                        <div class="flex align-items-center">
+                            <img src="../../../../assets/images/icons/buliding.svg" style="margin-right: 5px;">
                             <h3>{{ item.companyName }}</h3>
                         </div>
                         <span>{{ item.fromDate + " - " + item.toDate}}</span>
@@ -101,14 +101,14 @@
                 </div>
     
                 <div class="project">
-                    <h1 class="boder-text flex align-items-center">
-                        <i class="pi pi-tags"></i>
+                    <h3 class="boder-text flex align-items-center" style="margin-bottom: 15px">
+                        <img src="../../../../assets/images/icons/clipboards.svg" style="margin-right: 5px">
                         <span>Projects</span>
-                    </h1>
+                    </h3>
                     <div class="flex flex-column"  *ngFor="let p of item.projects">
                         <div class="flex w-full justify-content-between align-items-center">
-                            <div class="flex align-items-start">
-                                <i class="pi pi-tag" style="margin-right: 5px;"></i>
+                            <div class="flex align-items-center">
+                                <img src="../../../../assets/images/icons/clipboard.svg" style="margin-right: 5px;">
                                 <h3>{{ p.projectName }}</h3>
                             </div>
                             <span>{{ p.fromDate + " - " + p.toDate}}</span>
@@ -124,17 +124,14 @@
      
         <div>
             <h1 class="boder-text flex align-items-center">
-                <i class="pi pi-list"></i>
-                <span>Skill and language</span>
+                <img src="../../../../assets/images/icons/task.svg">
+                <span>Skill</span>
             </h1>
 
             <div class="flex flex-wrap">
-                <p-chip class="item" *ngFor="let i of skill">{{ i.name + " | " + i.level}}</p-chip>
-                <p-chip class="item" *ngFor="let i of language">{{ i.name + " | " + i.level}}</p-chip>
+                <p-chip class="item" *ngFor="let i of skill">{{ i.name }}</p-chip>
+                <p-chip class="item" *ngFor="let i of language">{{ i.name }}</p-chip>
             </div>
         </div>
     </div>
 </div>
-
-<div class="container" *ngIf="isCv">
-  </div>

@@ -6,11 +6,15 @@ import { UnAuthenticatedRoutingModule } from "./un-authenticated-routing.module"
 import { SignInComponent } from './sign-in/sign-in.component';
 import { TranslateModule } from "@ngx-translate/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
         UnAuthenticatedComponent,
-        SignInComponent
+        SignInComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent
     ],
 
     imports: [

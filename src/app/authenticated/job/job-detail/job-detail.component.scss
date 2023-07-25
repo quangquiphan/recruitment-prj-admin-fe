@@ -9,14 +9,16 @@
     }
 
     &>div:nth-of-type(2) {
-        h2, h3 {
+        h2,
+        h3 {
             margin-bottom: 3px;
         }
 
-        span, p-chip {
+        span,
+        p-chip {
             margin-bottom: 5px;
         }
-        
+
         p-chip {
             margin-right: 10px;
         }
@@ -27,8 +29,6 @@
     padding: 30px 20px;
 }
 
-:host::ng-deep {
-    .p-tabview-panels {
-        min-width: 830px;
-    }
+.p-tabview-panels {
+    min-width: 830px;
 }

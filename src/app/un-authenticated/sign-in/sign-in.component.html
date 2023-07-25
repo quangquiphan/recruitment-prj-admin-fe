@@ -19,7 +19,7 @@
             </label>
             <p-password inputId="pwd" formControlName="passwordHash" class="w-full pwd"></p-password>
 
-            <a class="font-size-13 forgot-pwd cursor-pointer" href="#">
+            <a class="font-size-13 forgot-pwd cursor-pointer" [routerLink]="'/forgot-password'">
                 {{ 'label.forgot_password' | translate }}
             </a>
         </div>

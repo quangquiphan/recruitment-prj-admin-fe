@@ -13,8 +13,6 @@
     color: var(--primary-600);
 }
 
-:host::ng-deep {
-    .user-detail-popup .p-dialog-mask {
-        background-color: rgba(69, 97, 97, 0.7) !important;
-    }
+.user-detail-popup .p-dialog-mask {
+    background-color: rgba(69, 97, 97, 0.7) !important;
 }

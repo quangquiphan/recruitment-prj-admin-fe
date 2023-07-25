@@ -41,6 +41,13 @@ const AppConstant = Object.freeze({
       ADMIN_COMPANY_MEMBER: "ADMIN_COMPANY_MEMBER",
       COMPANY_MEMBER: "COMPANY_MEMBER",
       USER: "USER"
+    },
+    COMPANY_SIZE: {
+      FORM_11_TO_25: 'FORM_11_TO_25',
+      FORM_26_TO_50: 'FORM_26_TO_50',
+      FORM_51_TO_100: 'FORM_51_TO_100',
+      FORM_101_TO_1000: 'FORM_101_TO_1000',
+      OVER_1000: 'OVER_1000',
     }
 });
 

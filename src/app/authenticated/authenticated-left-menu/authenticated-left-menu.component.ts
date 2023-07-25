@@ -31,19 +31,22 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
         id: 0,
         label: 'label.candidate',
         path: '/candidate',
-        icon: 'pi pi-users'
+        size: 24,
+        icon: '../../../assets/images/icons/users.svg'
       },
       {
         id: 1,
         label: 'label.company',
         path: '/company',
-        icon: 'pi pi-building'
+        size: 24,
+        icon: '../../../assets/images/icons/buliding.svg'
       },
       {
         id: 2,
         label: 'label.job',
         path: '/job',
-        icon: 'pi pi-briefcase'
+        size: 24,
+        icon: '../../../assets/images/icons/briefcase.svg'
       }
     ]
 

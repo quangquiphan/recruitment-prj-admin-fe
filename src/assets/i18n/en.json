@@ -4,18 +4,30 @@
         "last_name": "Last name",
         "email": "Email",
         "password": "Password",
+        "phone_number": "Phone number",
         "sign_in_with_email": "Sign in with email",
         "forgot_password": "Forgot password?",
         "keep_login": "Keep login",
         "company": "Company",
         "candidate": "Candidate",
-        "job": "Job"
+        "job": "Job",
+        "size": "Size",
+        "company_name": "Company name",
+        "new_company": "New company"
     },
     "button": {
         "sign_in": "Sign in",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "submit": "Submit"
+    },
+    "SIZE": {
+        "FORM_11_TO_25": "11 - 25",
+        "FORM_26_TO_50": "26 - 50",
+        "FORM_51_TO_100": "51 - 100",
+        "FORM_101_TO_1000": "101 - 1000",
+        "OVER_1000": "> 1000"
     }
 }

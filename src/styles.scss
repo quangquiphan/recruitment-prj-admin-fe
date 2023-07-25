@@ -168,6 +168,10 @@ h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
     color: var(--primary-700);
 }
 
+a {
+   color: var(--primary-700) !important;
+}
+
 .font-size-10 {
     font-size: 10px !important;
 }
@@ -211,7 +215,10 @@ h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
 }
 
 .header {
-    padding: 65px 20px 20px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end; 
+    height: 115px !important;
     background-color: var(--primary-50);
 }
 
@@ -229,6 +236,11 @@ h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
 
 .pi {
     font-size: 1.35rem !important;
+}
+
+.p-inputtext {
+   color: var(--primary-500) !important;
+   border-color: var(--primary-300) !important;
 }
 
 .p-tabview .p-tabview-nav {
@@ -312,6 +324,18 @@ h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
             
         }
     }
+}
+
+.p-paginator {
+    border: none !important;
+}
+
+.p-dropdown, .p-password, .p-inputtext {
+    width: 100%;
+}
+
+.p-icon {
+    color: var(--primary-700);
 }
 
 .p-button {

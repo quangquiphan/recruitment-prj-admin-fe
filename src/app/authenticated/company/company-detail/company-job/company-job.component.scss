@@ -6,7 +6,9 @@
     margin-bottom: 20px;
 
     & > div {
-        & > div, & > h4, & > span {
+        & > div,
+        & > h4,
+        & > span {
             margin-bottom: 5px;
         }
 
@@ -34,7 +36,10 @@
     background-color: var(--gray-50);
     border: 1px solid var(--gray-500);
 
-    h3, h4, span, i.pi {
+    h3,
+    h4,
+    span,
+    i.pi {
         color: var(--gray-800);
     }
 
@@ -43,9 +48,7 @@
     }
 }
 
-:host::ng-deep{
-    .company-job-expiry .p-chip {
-        background-color: var(--gray-300) !important;
-        // color: var(--primary-700) !important;
-    }    
+.company-job-expiry .p-chip {
+    background-color: var(--gray-300) !important;
+    // color: var(--primary-700) !important;
 }
