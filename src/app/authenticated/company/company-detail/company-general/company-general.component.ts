@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-company-general',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./company-general.component.scss']
 })
 export class CompanyGeneralComponent {
+  @Input() company: any = [];
 
 }

@@ -5,8 +5,8 @@
                 (click)="openPoup(u.id)">
                 <div class="icon flex justify-content-center align-items-center"
                     [ngClass]="u.avatar?'' : 'icon-bg'">
-                    <span *ngIf="!u.avatar">QP</span>
-                    <img *ngIf="u.avatar" src="../../../../../assets/images/TopWork-logo.png" alt="">
+                    <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" alt="">
+                    <img *ngIf="u.avatar" [src]="u?.avatar" alt="">
                 </div>
                 <div>
                     <h4>{{ u.fullName }}</h4>
@@ -16,8 +16,8 @@
     
             <p>{{ 'Year experience : ' + u.yearExperience}}</p>
             <div class="flex flex-wrap">
-                <p-chip *ngFor="let item of u.skills">{{ item.name + " | " + item.level }}</p-chip>
-                <p-chip *ngFor="let item of u.languages">{{ item.name + " | " + item.level }}</p-chip>
+                <p-chip *ngFor="let item of u.skills">{{ item.name }}</p-chip>
+                <p-chip *ngFor="let item of u.languages">{{ item.name }}</p-chip>
             </div>
         </div>
     </div>
@@ -30,5 +30,5 @@
 <p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
     [showHeader]="false">
     <i class="lose-popup pi pi-times-circle cursor-pointer" (click)="showUserDetail = false"></i>
-    <app-candidate-detail [userId]="userId"></app-candidate-detail>
+    <app-candidate-detail *ngIf="showUserDetail" [userId]="userId"></app-candidate-detail>
 </p-dialog>

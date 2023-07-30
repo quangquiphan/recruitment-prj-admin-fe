@@ -1,34 +1,29 @@
 <div class="flex flex-column general">
-    <h1>Overview</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, rerum. Enim atque illum velit voluptatibus vero, sed placeat cupiditate quis possimus ut deleniti aliquam, error, quo assumenda? Impedit, non? Repellendus!</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat molestiae, aliquam dolorem id sit quia harum impedit fugiat nobis iure, reiciendis eum corrupti debitis illum quo laudantium repellat sunt odio.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum facere dicta libero in odio deleniti? Recusandae fugit animi similique! Reiciendis consectetur, quis quos vero molestias aperiam nam aspernatur magnam cum?</p>
-    
-    <div class="flex align-items-center">
+    <h1>{{ 'label.overview' | translate }}</h1>
+    <p [innerHTML]="company?.overview"></p>
+
+    <div class="flex align-items-center" *ngIf="company?.size">
         <img src="../../../../../assets/images/icons/users.svg" alt="">
-        <span>over 100</span>
+        <span>{{ company?.size }}</span>
     </div>
 
-    <div class="flex align-items-center">
+    <div class="flex align-items-center" *ngIf="company?.phoneNumber">
         <img src="../../../../../assets/images/icons/call.svg" alt="">
-        <span>034xxxxxx7</span>
+        <span>{{ company?.phoneNumber }}</span>
     </div>
     
-    <div class="flex align-items-center">
+    <div class="flex align-items-center" *ngIf="company?.email">
         <img src="../../../../../assets/images/icons/sms.svg" alt="">
-        <span>abcxyz@gmail.com</span>
+        <span>{{ company?.email }}</span>
     </div>
 
-    <div class="flex align-items-center">
+    <div class="flex align-items-center" *ngIf="company?.website">
         <img src="../../../../../assets/images/icons/global.svg" alt="">
-        <span>www.abcxyz.com.vn</span>
+        <span>{{ company?.website }}</span>
     </div>
 
-    <div class="flex align-items-start">
+    <div class="flex align-items-start" *ngIf="company?.address">
         <img src="../../../../../assets/images/icons/briefcase.svg" alt="">
-        <span>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat doloremque, officiis quo inventore tempore commodi quasi reprehenderit quaerat molestiae illo consequuntur perferendis sit odit excepturi quidem? Neque expedita repudiandae doloribus?
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, dicta iure. Ratione temporibus eum est! Ratione, ea. Obcaecati explicabo doloremque autem maiores eveniet inventore. Culpa voluptatum amet minima odio molestias!
-        </span>
+        <span [innerHTML]="company?.address"></span>
     </div>
 </div>

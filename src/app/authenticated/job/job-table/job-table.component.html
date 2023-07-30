@@ -1,5 +1,5 @@
 <div class="header">
-    <h3>Jobs</h3>
+    <h3>{{ 'label.jobs' | translate }}</h3>
 </div>
 
 
@@ -11,11 +11,11 @@
     [paginator]="totalPages>1" responsiveLayout="scroll"> -->
         <ng-template pTemplate="header">
             <tr>
-                <th>ID</th>
-                <th>job name</th>
-                <th>position</th>
-                <th>salary</th>
-                <th>city</th>
+                <th>{{ 'label.id' | translate }}</th>
+                <th>{{ 'label.job_name' | translate }}</th>
+                <th>{{ 'label.position' | translate }}</th>
+                <th>{{ 'label.salary' | translate }}</th>
+                <th>{{ 'label.city' | translate }}</th>
             </tr>
         </ng-template>
 

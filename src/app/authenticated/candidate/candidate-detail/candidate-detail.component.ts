@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CandidateService } from 'src/app/services/candidate.service';
 import AppConstant from 'src/app/utilities/app-constant';
 import { environment } from 'src/environment/environment';
@@ -13,7 +14,6 @@ export class CandidateDetailComponent implements OnChanges {
   ev = environment;
   appConstant = AppConstant;
   candidate: any;
-  isCv: boolean = false;
   workhistory: any[] = [];
   education: any[] = [];
   skill: any[] = [];
@@ -21,12 +21,14 @@ export class CandidateDetailComponent implements OnChanges {
   user: any = {
     avatar: ''
   };
-  pdfSource: string = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   constructor(
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private translateService: TranslateService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log();
+    
     this.getCandidate(this.userId);
     this.workhistory = [
       {
@@ -141,11 +143,22 @@ export class CandidateDetailComponent implements OnChanges {
       res => {
         if (res.status === 200) {
           this.candidate = res.data;
-          this.isCv = res.data.cv?true:false;
-          // this.pdfSource = res.data.cv;
+          console.log(this.candidate);
+          
         }
       }
     )
   }
 
+  getFullName(firstName: any, lastName: any) {
+    return firstName + " " + lastName;
+  }
+
+  getYearExperience(year: any) {
+    if (year) {
+      return this.translateService.instant(`YEAR_EXPERIENCE.${year}`);
+    }
+
+    return 0;
+  }
 }

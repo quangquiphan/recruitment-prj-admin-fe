@@ -33,7 +33,8 @@ const AppConstant = Object.freeze({
     },
     JOB_STATUS: {
       MATCHES: "MATCHES",
-      APPLIED: "APPLIED"
+      APPLIED: "APPLIED",
+      REJECTED: "REJECTED",
     },
     USER_ROLE: {
       ADMIN: "ADMIN",
@@ -48,6 +49,9 @@ const AppConstant = Object.freeze({
       FORM_51_TO_100: 'FORM_51_TO_100',
       FORM_101_TO_1000: 'FORM_101_TO_1000',
       OVER_1000: 'OVER_1000',
+    },
+    ACCOUNT_TYPE: {
+      ADMIN: "ADMIN_SYSTEM"
     }
 });
 

@@ -67,6 +67,10 @@ const routes: Routes = [
                             {
                                 path: 'applied',
                                 component: JobDetailComponent
+                            },
+                            {
+                                path: 'rejected',
+                                component: JobDetailComponent
                             }
                         ]
                     }

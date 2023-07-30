@@ -20,7 +20,8 @@
 
     <div class="user-job">
         <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
-            <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" [header]="tab.label">
+            <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
+                [header]="tab.label | translate">
                 <app-user-job-applicant [jobStatus]="jobStatus"></app-user-job-applicant>
             </p-tabPanel>
         </p-tabView>

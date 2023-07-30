@@ -1,5 +1,5 @@
 <div class="header flex w-full justify-content-between align-item-end">
-    <h3>Company</h3>
+    <h3>{{ 'label.company' | translate }}</h3>
     <p-button [label]="'New'" (onClick)="isShowAddCompanyPopup = true"
         [style]="{'width' : '100px'}"></p-button>
 </div>
@@ -12,11 +12,11 @@
      responsiveLayout="scroll" [loading]="loading">
         <ng-template pTemplate="header">
             <tr>
-                <th>ID</th>
-                <th>Company name</th>
-                <th>Email</th>
-                <th>Phone number</th>
-                <th>Size</th>
+                <th>{{ 'label.id' | translate }}</th>
+                <th>{{ 'label.company_name' | translate }}</th>
+                <th>{{ 'label.email' | translate }}</th>
+                <th>{{ 'label.phone_number' | translate }}</th>
+                <th>{{ 'label.size' | translate }}</th>
             </tr>
         </ng-template>
 

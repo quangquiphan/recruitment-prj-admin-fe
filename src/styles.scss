@@ -159,13 +159,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--primary-700);
+    color: var(--primary-700) !important;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, span, .pi {
+h1, h2, h3, h4, h5, h6, p, ul, span, .pi, label {
     margin: 0;
     padding: 0;
-    color: var(--primary-700);
+    color: var(--primary-700) !important;
 }
 
 a {
@@ -347,7 +347,7 @@ a {
     border-radius: 25px !important;
 
     .p-button-label {
-        color: var(--white);
+        color: var(--white) !important;
     }
 }
 

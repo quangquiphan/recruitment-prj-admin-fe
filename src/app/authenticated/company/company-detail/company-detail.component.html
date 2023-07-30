@@ -8,15 +8,15 @@
             <div class="icon flex justify-content-start align-items-center">
                 <img src="../../../../assets/images/TopWork-logo.png" width="100%" alt="">
             </div>
-            <h2>Company name</h2>
+            <h2>{{ company?.companyName }}</h2>
         </div>
     </div>
     
     <div class="company-tabs">
         <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
             <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
-                [header]="tab.label">
-                <app-company-general *ngIf="selectedTab  === 0"></app-company-general>
+                [header]="tab.label | translate">
+                <app-company-general [company]="company" *ngIf="selectedTab  === 0"></app-company-general>
                 <app-company-job *ngIf="selectedTab === 1"></app-company-job>
                 <app-company-account *ngIf="selectedTab === 2"></app-company-account>
             </p-tabPanel>

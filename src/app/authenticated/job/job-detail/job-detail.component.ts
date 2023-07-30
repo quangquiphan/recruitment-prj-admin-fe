@@ -12,11 +12,15 @@ export class JobDetailComponent implements OnInit{
   tabViews: any[] = [
     {
       index: 0,
-      label: 'Matches'
+      label: 'label.matches'
     },
     {
       index: 1,
-      label: 'Applied'
+      label: 'label.applied'
+    },
+    {
+      index: 2,
+      label: 'label.rejected'
     }
   ]
   selectedTab: number = 0;
@@ -50,6 +54,8 @@ export class JobDetailComponent implements OnInit{
       this.selectedTab = 0;
     } else if (map.get('tab') === 'applied') {
       this.selectedTab = 1;
+    } else if (map.get('tab') === 'rejected') {
+      this.selectedTab = 2;
     }
 
     this.activatedTabView(this.selectedTab);
@@ -75,6 +81,11 @@ export class JobDetailComponent implements OnInit{
     if (selectedTab === 1) {
       this.jobStatus = AppConstant.JOB_STATUS.APPLIED;
       tab = "applied";
+    }
+    
+    if (selectedTab === 2) {
+      this.jobStatus = AppConstant.JOB_STATUS.REJECTED;
+      tab = "rejected";
     }
 
     return this.route.navigate([`/job/${this.jobId}/${tab}`]).then(r => {});

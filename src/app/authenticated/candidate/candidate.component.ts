@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CandidateService } from 'src/app/services/candidate.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class CandidateComponent implements OnInit{
 
   constructor(
     private route: Router,
+    private translateService: TranslateService,
     private candidateService: CandidateService
   ) {}
 
@@ -62,5 +64,13 @@ export class CandidateComponent implements OnInit{
 
   checkCV(item: any) {
     return item.cv?true:false;
+  }
+
+  getYearExperience(year: any) {
+    if (year) {
+      return this.translateService.instant(`YEAR_EXPERIENCE.${year}`);
+    }
+
+    return 0;
   }
 }

@@ -4,6 +4,7 @@
         "last_name": "Last name",
         "email": "Email",
         "password": "Password",
+        "confirm_password": "Confirm password",
         "phone_number": "Phone number",
         "sign_in_with_email": "Sign in with email",
         "forgot_password": "Forgot password?",
@@ -11,9 +12,27 @@
         "company": "Company",
         "candidate": "Candidate",
         "job": "Job",
+        "jobs": "Jobs",
+        "job_name": "Job name",
+        "position": "Position",
+        "id": "ID",
+        "salary": "Salary",
+        "city": "City",
         "size": "Size",
         "company_name": "Company name",
-        "new_company": "New company"
+        "new_company": "New company",
+        "year_experiences": "{{year}} year experiences",
+        "year_experience": "{{year}} year experience",
+        "account": "Account",
+        "general": "General",
+        "overview": "Overview",
+        "matches": "Matches",
+        "applied": "Applied",
+        "rejected": "Rejected"
+    },
+    "message": {
+        "check_your_email": "Check your email!",
+        "reset_password_successfully": "Reset password successfully!"
     },
     "button": {
         "sign_in": "Sign in",
@@ -29,5 +48,15 @@
         "FORM_51_TO_100": "51 - 100",
         "FORM_101_TO_1000": "101 - 1000",
         "OVER_1000": "> 1000"
+    },
+    "YEAR_EXPERIENCE": {
+        "NON_EXPERIENCE": "0", 
+        "UNDER_1_YEAR": "0 - 1", 
+        "ONE_YEAR": "1", 
+        "TWO_YEAR": "2", 
+        "THREE_YEAR": "3", 
+        "FOUR_YEAR": "4", 
+        "FIVE_YEAR": "5", 
+        "OVER_FIVE_YEAR": "5+"
     }
 }

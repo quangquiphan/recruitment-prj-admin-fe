@@ -307,7 +307,7 @@ const AppUtil = {
             {
                 id: 62,
                 name: "Vĩnh Phúc"
-            },
+            }
         ];
     },
 

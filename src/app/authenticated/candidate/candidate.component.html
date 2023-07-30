@@ -32,7 +32,7 @@
                     {{ item.lastName }}
                 </td>
                 <td class="text-ellipsis cursor-pointer">
-                    {{ item.yearExperience }}
+                    {{ getYearExperience(item.yearExperience) }}
                 </td>
                 <td class="text-ellipsis cursor-pointer">
                     {{ item.email }}
@@ -52,5 +52,5 @@
 <p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
     [showHeader]="false">
     <i class="lose-popup pi pi-times-circle cursor-pointer" (click)="showUserDetail = false"></i>
-    <app-candidate-detail [userId]="id"></app-candidate-detail>
+    <app-candidate-detail *ngIf="showUserDetail" [userId]="id"></app-candidate-detail>
 </p-dialog>

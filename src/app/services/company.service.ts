@@ -24,6 +24,16 @@ export class CompanyService {
     )
   }
 
+  getCompany(id: any) : Observable<HttpResponse> {
+    return this.http.get<HttpResponse>(`${_prefix}/${id}`).pipe(
+      map(
+        result => {
+          return result;
+        }
+      )
+    )
+  }
+
   getAllCompany(params: any) : Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${_prefix}`, {params}).pipe(
       map(

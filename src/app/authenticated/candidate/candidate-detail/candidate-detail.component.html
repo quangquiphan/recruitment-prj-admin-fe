@@ -1,30 +1,30 @@
-<div class="w-full flex justify-content-center" *ngIf="!isCv">
+<div class="w-full flex justify-content-center">
     <div class="info flex flex-column justify-content-center align-items-start">
         <div class="flex align-items-center justify-content-center w-full">
             <div class="icon flex justify-content-center align-items-center"
                 [ngClass]="user.avatar?'' : 'icon-bg'">
-                <span class="icon-text" *ngIf="!user.avatar">QP</span>
-                <img *ngIf="user.avatar" src="../../../../assets/images/TopWork-logo.png" width="100%">
+                <img [src]="candidate?.avatar" alt="" *ngIf="candidate?.avatar">
+                <img *ngIf="!candidate?.avatar" src="../../../../assets/images/TopWork-logo.png" width="100%">
             </div>
     
             <div class="flex flex-column">
-                <h2 style="margin-bottom: 3px;">Full name</h2>
+                <h2 style="margin-bottom: 3px;">{{ getFullName(candidate?.firstName, candidate?.lastName) }}</h2>
                 <div class="deliver" style="margin-bottom: 3px;"></div>
-                <h4 style="margin-bottom: 3px;">Senior Java developer </h4>
-                <span>4 year experiences</span>
+                <h4 style="margin-bottom: 3px;">{{ candidate?.title }}</h4>
+                <span>
+                    {{ (candidate?.yearExperience > 1 ? 'label.year_experiences':'label.year_experience') | translate 
+                        :{year: getYearExperience(candidate?.yearExperience)} }}
+                </span>
             </div>
         </div>
     
-        <div>
+        <div *ngIf="candidate?.summary">
             <h1 class="boder-text flex align-items-center">
                 <img class="i" src="../../../../assets/images/icons/archive-minus.svg" alt="">
                 <span>summary</span>
             </h1>
     
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Officia recusandae rem voluptatibus. 
-                Tempore officia iusto placeat tenetur illo rerum unde accusantium! 
-                Aspernatur atque accusamus similique at vitae ea soluta harum.</p>
+            <p [innerHTML]="candidate?.summary"></p>
         </div>
     
         <div class="w-full flex info-edu justify-content-between">
@@ -33,40 +33,40 @@
                     <img src="../../../../assets/images/icons/info-circle.svg" alt="" class="i">
                     <span>Information</span>
                 </h1>
-                <div class="flex align-items-center">
+                <div class="flex align-items-center" *ngIf="candidate?.gender">
                     <img src="../../../../assets/images/icons/gender.svg" style="margin: 0 5px 5px 0;" alt="">
-                    <p>MALE</p>
+                    <p>{{ candidate?.gender }}</p>
                 </div>
         
-                <div class="flex align-items-center">
+                <div class="flex align-items-center" *ngIf="candidate?.phoneNumber">
                     <img src="../../../../assets/images/icons/call.svg" style="margin: 0 5px 5px 0;" alt="">
-                    <p>0123xxxx</p>
+                    <p>{{ candidate?.phoneNumber }}</p>
                 </div>
         
-                <div class="flex align-items-center">
+                <div class="flex align-items-center" *ngIf="candidate?.email">
                     <img src="../../../../assets/images/icons/sms.svg" style="margin: 0 5px 5px 0;" alt="">
-                    <p>example@gmail.com</p>
+                    <p>{{ candidate?.email }}</p>
                 </div>
         
-                <div class="flex align-items-center">
+                <div class="flex align-items-center" *ngIf="candidate?.github">
                     <img src="../../../../assets/images/icons/global.svg" style="margin: 0 5px 5px 0;" alt="">
-                    <p>httpS://github.com/aghfdgsvx</p>
+                    <p>{{ candidate?.github }}</p>
                 </div>
         
-                <div class="flex align-items-center">
+                <div class="flex align-items-center" *ngIf="candidate?.address">
                     <img src="../../../../assets/images/icons/location.svg" style="margin: 0 5px 5px 0;" alt="">
-                    <p>sgs asdfsed </p>
+                    <p>{{ candidate?.address }}</p>
                 </div>
             </div>
             
-            <div>
+            <div *ngIf="candidate?.educations.length>0">
                 <h1 class="boder-text flex align-items-center">
                     <img src="../../../../assets/images/icons/buliding.svg" alt="">
                     <span>Education</span>
                 </h1>
 
                 <div class="flex flex-column w-full relative education-data" 
-                    *ngFor="let item of education">
+                    *ngFor="let item of candidate?.educations">
                     <div class="w-full">
                         <div class="flex w-full justify-content-between align-items-center">
                             <h3>{{ item.schoolName }}</h3>
@@ -79,14 +79,14 @@
             </div>
         </div>
         
-        <div class="w-full work-history">
+        <div class="w-full work-history" *ngIf="candidate?.workHistories.length>0">
             <h1 class="boder-text flex align-items-center">
                 <img src="../../../../assets/images/icons/briefcase.svg" alt="">
                 <span>Work history</span>
             </h1>
     
             <div class="flex flex-column w-full relative work-history-data" 
-                *ngFor="let item of workhistory">
+                *ngFor="let item of candidate?.workHistories">
                 <span class="line-node"></span>
                 <div class="w-full workplace">
                     <div class="flex w-full justify-content-between align-items-center">
@@ -100,7 +100,7 @@
                     <p [innerHTML]="item.description"></p>
                 </div>
     
-                <div class="project">
+                <div class="project" *ngIf="item.projects.length>0">
                     <h3 class="boder-text flex align-items-center" style="margin-bottom: 15px">
                         <img src="../../../../assets/images/icons/clipboards.svg" style="margin-right: 5px">
                         <span>Projects</span>

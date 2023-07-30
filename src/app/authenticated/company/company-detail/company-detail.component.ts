@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toArray } from 'lodash';
+import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -11,31 +12,43 @@ export class CompanyDetailComponent implements OnInit{
   tabViews: any[] = [
     {
       index: 0,
-      label: 'General'
+      label: 'label.general'
     },
     {
       index: 1,
-      label: 'Jobs'
+      label: 'label.jobs'
     },
     {
       index: 2,
-      label: 'Account'
+      label: 'label.account'
     }
   ]
   selectedTab: number = 0;
   companyId: any = '';
+  company: any;
 
   constructor(
     private route: Router,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private companyService: CompanyService
   ) {
 
   }
   
   ngOnInit(): void {
     this.companyId = this.router.snapshot.paramMap.get('id');
-    
+    this.getCompany(this.companyId);
+
     this.selectedTabViewUrl();
+  }
+
+  getCompany(id: any) {
+    this.companyService.getCompany(id).subscribe(
+      res => {
+        console.log(res);
+        this.company = res.data;
+      }
+    )
   }
 
   selectedTabViewUrl() {
