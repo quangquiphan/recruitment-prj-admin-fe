@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { escape } from 'lodash';
+import { MessageService } from 'primeng/api';
 import { CompanyService } from 'src/app/services/company.service';
 import AppConstant from 'src/app/utilities/app-constant';
+import AppData from 'src/app/utilities/app-data';
 import AppUtil from 'src/app/utilities/app-util';
 
 @Component({
@@ -17,7 +20,7 @@ export class CompanyTableComponent implements OnInit{
   isShowAddCompanyPopup: boolean = false;
   loading: boolean = false;
   companySizes: any = [];
-
+  keyword: string = '';
   paging: any = {
     pageNumber: 1,
     pageSize: 10
@@ -30,9 +33,10 @@ export class CompanyTableComponent implements OnInit{
     private route: Router,
     private fb: FormBuilder,
     private companyService: CompanyService,
+    private messageService: MessageService,
     private translateService: TranslateService
   ) {
-    this.companySizes = AppUtil.getCompanySize(this.translateService);
+    this.companySizes = AppData.getCompanySize(this.translateService);
     this.companyForm = this.fb.group({
       companyName: ['', Validators.required],
       email: ['', Validators.pattern(AppConstant.PATTERNS.EMAIL)],
@@ -42,7 +46,7 @@ export class CompanyTableComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.onLoadData('');
+    this.onLoadData();
   }
 
   getAllCompany(paging: any) {
@@ -56,39 +60,61 @@ export class CompanyTableComponent implements OnInit{
       }
     )
 
-    this.loading = false;
+    return this.loading = false;
   }
 
-  onLoadData(ev: any) {
+  onLoadData(ev?: any) {
     this.loading = true;
     if (ev) {
       this.paging.pageSize = ev.rows;
       this.paging.pageNumber = ev.first/ev.rows + 1;
     }
     
-    this.getAllCompany(this.paging);
+    return this.getAllCompany(this.paging);
   }
 
   onSubmit() {
-    this.companyService.addCompany(AppUtil.toSnakeCaseKey(this.companyForm.value))
+    return this.companyService.addCompany(AppUtil.toSnakeCaseKey(this.companyForm.value))
       .subscribe(
         res => {
           if (res.status === 200) {
+            AppUtil.getMessageSuccess(this.messageService, this.translateService,
+              'message.add_company_successfully');
             this.getAllCompany(this.paging);
             this.isShowAddCompanyPopup = false;
             this.companyForm.reset();
+          } else {
+            AppUtil.getMessageSuccess(this.messageService, this.translateService,
+              'message.add_company_failed');
           }
         }
       )
-    
   }
 
   onCancel() {
     this.isShowAddCompanyPopup = false;
-    this.companyForm.reset();
+    return this.companyForm.reset();
+  }
+
+  onSearch(keyword: string) {
+    if (!keyword) return this.onLoadData();
+
+    return this.companyService.searchCompany({keyword}).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.companies = res.data.content;
+          this.totalElements = res.data.totalElements;
+          this.totalPages = res.data.totalPages;
+        }
+      }
+    )
   }
 
   onNavigateToDetail(id: string) {
     return this.route.navigate([`/company/${id}`]).then(r => {});
+  }
+
+  parseSize(size: string) {
+    return this.translateService.instant(`SIZE.${size}`);
   }
 }

@@ -1,4 +1,5 @@
 {
+    "title": "TopWork",
     "label" : {
         "first_name": "First name",
         "last_name": "Last name",
@@ -28,11 +29,48 @@
         "overview": "Overview",
         "matches": "Matches",
         "applied": "Applied",
-        "rejected": "Rejected"
+        "rejected": "Rejected",
+        "name": "Name",
+        "skills": "Skills",
+        "languages": "Languages",
+        "add_skill": "Add skill",
+        "add_language": "Add language",
+        "new": "New",
+        "skill_name": "Skill name",
+        "langauge": "Language",
+        "add_company_member": "Add company member",
+        "edit_company_member": "Edit company member"
     },
     "message": {
+        "success": "Success",
+        "Failed": "Failed",
+        "add_company_member_successfully": "Add company member successfully!",
+        "add_company_member_failed": "Add company member failed!",
+        "edit_company_member_successfully": "Edit company member successfully!",
+        "edit_company_member_failed": "Edit company member failed!",
+        "delete_company_member_successfully": "Delete company member successfully!",
+        "delete_company_member_failed": "Delete company member failed!",
+        "add_company_successfully": "Add company successfully!",
+        "add_company_failed": "Add company failed!",
+        "add_skill_successfully": "Add skill successfully!",
+        "add_skill_failed": "Add skill failed!",
+        "add_language_successfully": "Add language successfully!",
+        "add_language_failed": "Add language failed!",
+        "edit_skill_successfully": "Edit skill successfully!",
+        "edit_skill_failed": "Edit skill failed!",
+        "edit_language_successfully": "Edit language successfully!",
+        "edit_language_failed": "Edit language failed!",
+        "delete_skill_successfully": "Delete skill successfully!",
+        "delete_skill_failed": "Delete skill failed!",
+        "delete_language_successfully": "Delete language successfully!",
+        "delete_language_failed": "Delete language failed!",
         "check_your_email": "Check your email!",
-        "reset_password_successfully": "Reset password successfully!"
+        "reset_password_successfully": "Reset password successfully!",
+        "search_by_skill_name": "Search by skill name",
+        "search_by_language_name": "Search by language name",
+        "search_by_email_last_name_first_name_phone_number": "Search by last name, first name, email and phone number",
+        "search_by_email_company_name": "Search by email and company name"
+
     },
     "button": {
         "sign_in": "Sign in",
@@ -40,7 +78,8 @@
         "cancel": "Cancel",
         "edit": "Edit",
         "delete": "Delete",
-        "submit": "Submit"
+        "submit": "Submit",
+        "search": "Search"
     },
     "SIZE": {
         "FORM_11_TO_25": "11 - 25",
@@ -58,5 +97,20 @@
         "FOUR_YEAR": "4", 
         "FIVE_YEAR": "5", 
         "OVER_FIVE_YEAR": "5+"
+    },
+    "major": {
+        "it": "IT",
+        "hr": "Human resource",
+        "law": "Law",
+        "accountant": "Accountant",
+        "sale": "Sale",
+        "qa_qc": "QA/QC",
+        "education": "Education",
+        "orther": "Orther"
+    },
+    "role": {
+        "COMPANY_ADMIN": "Admin",
+        "COMPANY_MEMBER": "Member",
+        "COMPANY_ADMIN_MEMBER": "Admin"
     }
 }

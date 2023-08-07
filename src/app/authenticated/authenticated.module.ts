@@ -18,6 +18,9 @@ import { CompanyGeneralComponent } from './company/company-detail/company-genera
 import { CompanyJobComponent } from './company/company-detail/company-job/company-job.component';
 import { UserJobApplicantComponent } from './job/job-detail/user-job-applicant/user-job-applicant.component';
 import { CompanyAccountComponent } from './company/company-detail/company-account/company-account.component';
+import { SkillsComponent } from './skills/skills.component';
+import { SkillTableComponent } from './skills/skill-table/skill-table.component';
+import { SkillComponent } from "./skills/skill/skill.component";
 
 @NgModule({
     declarations: [
@@ -35,6 +38,9 @@ import { CompanyAccountComponent } from './company/company-detail/company-accoun
         CompanyJobComponent,
         UserJobApplicantComponent,
         CompanyAccountComponent,
+        SkillsComponent,
+        SkillTableComponent,
+        SkillComponent,
     ],
 
     imports: [

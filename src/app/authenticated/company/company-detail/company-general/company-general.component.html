@@ -4,7 +4,7 @@
 
     <div class="flex align-items-center" *ngIf="company?.size">
         <img src="../../../../../assets/images/icons/users.svg" alt="">
-        <span>{{ company?.size }}</span>
+        <span>{{ parseSize(company?.size) }}</span>
     </div>
 
     <div class="flex align-items-center" *ngIf="company?.phoneNumber">

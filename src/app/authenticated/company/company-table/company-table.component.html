@@ -6,6 +6,15 @@
 
 
 <div class="company-table">
+    <div class="w-8 flex justify-content-start align-items-center search">
+        <img src="../../../../assets/images/icons/search-normal.svg" [width]="24" alt="">
+        <input type="text" pInputText [(ngModel)]="keyword"
+            [placeholder]="'message.search_by_email_company_name' | translate">
+
+        <button class="btn-edit" pButton [label]="'button.search' | translate"
+            (click)="onSearch(keyword)"></button>
+    </div>
+
     <p-table class="table" *ngIf="totalElements > 0" (onLazyLoad)="onLoadData($event)"
     [rows]="paging.pageSize" [paginator]="true" [lazy]="true" [value]="companies"
     [rowHover]="true" [paginator]="totalElements > paging.pageSize" [totalRecords]="totalElements"
@@ -35,7 +44,7 @@
                     {{ item.phoneNumber }}
                 </td>
                 <td class="text-ellipsis cursor-pointer">
-                    {{ item.size }}
+                    {{ parseSize(item.size) }}
                 </td>
             </tr>
         </ng-template>

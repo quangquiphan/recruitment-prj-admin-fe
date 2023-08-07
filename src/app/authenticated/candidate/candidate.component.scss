@@ -16,3 +16,29 @@
 .user-detail-popup .p-dialog-mask {
     background-color: rgba(69, 97, 97, 0.7) !important;
 }
+
+.search {
+    margin-bottom: 30px;
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+    }
+
+    input {
+        margin-right: 20px;
+    }
+}
+
+:host::ng-deep {
+    .search input{
+        border-radius: 0;
+        padding-left: 40px !important;
+        border: 2px solid !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+    }
+}

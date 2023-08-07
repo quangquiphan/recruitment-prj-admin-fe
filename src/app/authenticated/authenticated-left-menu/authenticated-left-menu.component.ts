@@ -10,8 +10,38 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 })
 export class AuthenticatedLeftMenuComponent implements OnInit{
   authUser: AuthUser | undefined;
-  selectItem: any;
-  leftMenuItems: any[] = [];
+  selectedTab: any;
+  href: any;
+  leftMenuItems: any[] = [
+    {
+      id: 0,
+      label: 'label.candidate',
+      path: '/candidate',
+      size: 24,
+      icon: '../../../assets/images/icons/users.svg'
+    },
+    {
+      id: 1,
+      label: 'label.company',
+      path: '/company',
+      size: 24,
+      icon: '../../../assets/images/icons/buliding.svg'
+    },
+    {
+      id: 2,
+      label: 'label.job',
+      path: '/job',
+      size: 24,
+      icon: '../../../assets/images/icons/briefcase.svg'
+    },
+    {
+      id: 3,
+      label: 'label.skills',
+      path: '/skills',
+      size: 24,
+      icon: '../../../assets/images/icons/colorfilter.svg'
+    }
+  ];
 
   constructor(
     private route: Router,
@@ -21,38 +51,15 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
   ngOnInit(): void {
     this.initMenu();
     this.getInfo();
+
   }
 
   initMenu() {
-    this.selectItem = this.route.url;
-
-    this.leftMenuItems = [
-      {
-        id: 0,
-        label: 'label.candidate',
-        path: '/candidate',
-        size: 24,
-        icon: '../../../assets/images/icons/users.svg'
-      },
-      {
-        id: 1,
-        label: 'label.company',
-        path: '/company',
-        size: 24,
-        icon: '../../../assets/images/icons/buliding.svg'
-      },
-      {
-        id: 2,
-        label: 'label.job',
-        path: '/job',
-        size: 24,
-        icon: '../../../assets/images/icons/briefcase.svg'
-      }
-    ]
-
-    this.leftMenuItems.forEach(item => {
-      if (this.selectItem.includes(item.path)) {
-        return this.selectItem = item.path;
+    this.route.events.subscribe((e : any) => {
+      if (e?.routerEvent) {
+        this.href = e?.routerEvent.url;
+        this.selectedTab = e?.routerEvent.id;
+        this.getSelectedTab(this.href);        
       }
     })
   }
@@ -67,9 +74,19 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
      )
   }
 
-  onSelectItem(ev: any) {
-    this.route.navigate([ev.path]).then(r => {});    
-    return this.selectItem = ev.path;
+  getSelectedTab(url: any) {
+    if (this.href.includes('candidate')) {
+      this.selectedTab = 0;
+    } else if (this.href.includes('company')) {
+      this.selectedTab = 1;
+    } else if (this.href.includes('job')) {
+      this.selectedTab = 2;
+    }else if (this.href.includes('skills')) {
+      this.selectedTab = 3;
+    } 
+    //  else if (this.href.includes('company')) {
+    //   this.selectedTab = 1;
+    // }
   }
 
   parserName(auth: AuthUser | undefined) {

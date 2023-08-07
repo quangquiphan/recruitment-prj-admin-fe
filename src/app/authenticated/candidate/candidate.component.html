@@ -3,6 +3,15 @@
 </div>
 
 <div class="candidate-table">
+    <div class="w-8 flex justify-content-start align-items-center search">
+        <img src="../../../../assets/images/icons/search-normal.svg" [width]="24" alt="">
+        <input type="text" pInputText [(ngModel)]="keyword"
+            [placeholder]="'message.search_by_email_last_name_first_name_phone_number' | translate">
+
+        <button class="btn-edit" pButton [label]="'button.search' | translate"
+            (click)="onSearch(keyword)"></button>
+    </div>
+
     <p-table class="table" [value]="candidates" 
     [rows]="paging.pageSize" [paginator]="true"
     [(first)]="first" [lazy]="true" [rowHover]="true"

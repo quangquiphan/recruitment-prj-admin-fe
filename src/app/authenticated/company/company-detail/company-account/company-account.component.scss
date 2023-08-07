@@ -2,6 +2,9 @@
     font-size: 2.5rem !important;
 }
 
+.account-items {
+    margin-bottom: 20px;
+}
 
 .company-member {
     padding: 20px;
@@ -18,12 +21,6 @@
         border-radius: 50%;
         padding: 5px;
         margin-right: 20px;
-    }
-
-    .icon-text {
-        background-color: var(--primary-200);
-        color: var(--primary-700);
-        font-size: 25px;
     }
 }
 

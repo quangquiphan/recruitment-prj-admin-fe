@@ -1,21 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import HttpResponse from '../model/http.response.model';
-import { HttpClient } from '@angular/common/http';
 
-let _prefix = '/user';
+let _prefix = "/job";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class JobService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  addCompanyMember(params: any): Observable<HttpResponse> {
-    return this.http.post<HttpResponse>(`${_prefix}/member`, params).pipe(
+  getJobsByCompanyId(params: any) : Observable<HttpResponse> {
+    return this.http.get<HttpResponse>(`${_prefix}`, {params}).pipe(
       map(
         result => {
           return result;
@@ -24,8 +24,8 @@ export class UserService {
     )
   }
 
-  getCompanyMember(params: any): Observable<HttpResponse> {
-    return this.http.get<HttpResponse>(`${_prefix}/member`, {params}).pipe(
+  getJobs(params: any) : Observable<HttpResponse> {
+    return this.http.get<HttpResponse>(`${_prefix}/all`, {params}).pipe(
       map(
         result => {
           return result;
@@ -34,7 +34,7 @@ export class UserService {
     )
   }
 
-  getUser(id: string): Observable<HttpResponse> {
+  getJob(id: string) : Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${_prefix}/${id}`).pipe(
       map(
         result => {
@@ -44,7 +44,7 @@ export class UserService {
     )
   }
 
-  searchUser(params: any): Observable<HttpResponse> {
+  searchJobs(params: any) : Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${_prefix}/search`, {params}).pipe(
       map(
         result => {
@@ -54,17 +54,7 @@ export class UserService {
     )
   }
 
-  updateCompanyMember(id: string, params: any): Observable<HttpResponse> {
-    return this.http.put<HttpResponse>(`${_prefix}/member/${id}`, params).pipe(
-      map(
-        result => {
-          return result;
-        }
-      )
-    )
-  }
-
-  deleteUser(id: string): Observable<HttpResponse> {
+  deleteJob(id: string) : Observable<HttpResponse> {
     return this.http.delete<HttpResponse>(`${_prefix}/${id}`).pipe(
       map(
         result => {

@@ -1,0 +1,16 @@
+<div class="w-fit-content">
+    <div class="skill-info flex align-items-center justify-content-start header">
+        <h2>{{ tabName }}</h2>
+    </div>
+
+    <div class="skill-tabs">
+        <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
+            <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
+                [header]="tab.label | translate">
+                <app-skill-table *ngIf="selectedTab == 0" [selectedTab]="selectedTab"></app-skill-table>
+                <app-skill-table *ngIf="selectedTab == 1" [selectedTab]="selectedTab"></app-skill-table>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+

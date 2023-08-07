@@ -1,45 +1,46 @@
-<div class="flex flex-column align-items-center">
-    <div class="flex justify-content-start align-items-start" style="width: 500px; margin-bottom: 30px;">
+<div class="flex flex-column align-items-center relative">
+    <div class="flex justify-content-start align-items-start" style="position: absolute; top: -160px; right: -10px;">
         <i (click)="onOpen('')" class="pi pi-plus-circle add cursor-pointer"></i>
     </div>
-    <div class="flex w-full justify-content-center align-items-center">
+    <div class="flex w-full justify-content-center align-items-center account-items" *ngFor="let i of accountMember">
         <div class="w-full company-member">
             <div class="flex w-full justify-content-between align-items-center">
                 <div class="flex w-full justify-content-start align-items-center">
                     <div
-                        class="icon flex align-items-center justify-content-center icon-text">
-                        <!-- <span class="">QP</span> -->
-                        <img src="../../../../../assets/images/TopWork-logo.png" width="100%" alt="">
+                        class="icon flex align-items-center justify-content-center">
+                        <img *ngIf="i?.avatar" [src]="i?.avatar" width="100%" alt="">
+                        <img *ngIf="!i?.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%" alt="">
                     </div>
                     <div>
-                        <h3>Member name</h3>
+                        <h3 style="margin-bottom: 3px;">{{ i?.lastName + " " + i?.firstName }}</h3>
 
-                        <h4>example@gmail.com</h4>
+                        <h4 style="margin-bottom: 3px;">{{ i?.email }}</h4>
 
-                        <p>role</p>
+                        <p class="font-size-13">{{ parseRole(i?.role) }}</p>
                     </div>
                 </div>
-                <img src="../../../../../assets/images/icons/edit-2.svg" (click)="onOpen('ashdnvcjlsdh')">
+                <img src="../../../../../assets/images/icons/edit-2.svg" class="cursor-pointer" (click)="onOpen(i?.id)">
             </div>
         </div>
     </div>
 </div>
 
-<p-paginator (onPageChange)="onPageChange($event)" [rows]="paging.pageSize" [totalRecords]="3" [first]="first"></p-paginator>
+<p-paginator (onPageChange)="onPageChange($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
+    [first]="first" *ngIf="totalElements > paging.pageSize"></p-paginator>
 
-<p-dialog [(visible)]="showMemberSetting" (onHide)="showMemberSetting = false" 
-    [header]="'Menber company'" class="custom-dialog">
+<p-dialog [(visible)]="showMemberSetting" (onHide)="onCancel()" 
+    [header]="label" class="custom-dialog">
     <form [formGroup]="accountForm">
         <div class="flex justify-content-between">
             <div class="flex flex-column">
-                <label class="font-bold" for="firstName">
+                <label class="font-bold" for="firstName" style="margin-bottom: 3px;">
                     {{ 'label.first_name' | translate }}
                 </label>
                 <input pInputText type="text" id="firstName" formControlName="firstName">
             </div>
 
             <div class="flex flex-column">
-                <label class="font-bold" for="lastName">
+                <label class="font-bold" for="lastName" style="margin-bottom: 3px;">
                     {{ 'label.last_name' | translate }}
                 </label>
                 <input pInputText type="text" id="lastName" formControlName="lastName">
@@ -47,7 +48,7 @@
         </div>
 
         <div class="flex flex-column">
-            <label class="font-bold" for="email">
+            <label class="font-bold" for="email" style="margin-bottom: 3px;">
                 {{ 'label.email' | translate }}
             </label>
             <input pInputText type="text" id="email" formControlName="email">
@@ -56,10 +57,17 @@
         <div class="font-bold">Role</div>
 
         <div class="role flex align-items-center" 
-            [ngClass]="accountForm.value.role == constant.USER_ROLE.ADMIN_COMPANY?'role-active' : ''">
-            <p-radioButton name="role" [value]="constant.USER_ROLE.ADMIN_COMPANY" inputId="admin" 
+            [ngClass]="accountForm.value.role == constant.USER_ROLE.COMPANY_ADMIN?'role-active' : ''">
+            <p-radioButton name="role" [value]="constant.USER_ROLE.COMPANY_ADMIN" inputId="admin" 
                formControlName="role"></p-radioButton>
-            <label for="admin">ADMIN</label>
+            <label for="admin">{{ parseRole(constant.USER_ROLE.COMPANY_ADMIN) }}</label>
+        </div>
+
+        <div class="role flex align-items-center" 
+            [ngClass]="accountForm.value.role == constant.USER_ROLE.COMPANY_ADMIN_MEMBER?'role-active' : ''">
+            <p-radioButton name="role" [value]="constant.USER_ROLE.COMPANY_ADMIN_MEMBER" inputId="admin_member" 
+               formControlName="role"></p-radioButton>
+            <label for="admin_member">{{ parseRole(constant.USER_ROLE.COMPANY_ADMIN_MEMBER) }}</label>
         </div>
 
         <div class="role flex align-items-center" style="margin-bottom: 30px;"
@@ -67,14 +75,14 @@
             <p-radioButton name="role" inputId="member" [value]="constant.USER_ROLE.COMPANY_MEMBER"
                 
                formControlName="role"></p-radioButton>
-            <label for="member">Member</label>
+            <label for="member">{{ parseRole(constant.USER_ROLE.COMPANY_MEMBER) }}</label>
         </div>
 
         <div class="flex justify-content-center align-items-center">
-            <p-button [label]="'button.save' | translate"
-                (onClick)="onSubmit()"></p-button>
-            <p-button class="btn-cancel" (onClick)="onCancel()" 
-                [label]="'button.cancel' | translate"></p-button>
+            <p-button [label]="'button.save' | translate" (onClick)="onSubmit(userId)" 
+                [disabled]="accountForm.invalid || disable"></p-button>
+            <p-button [ngClass]="userId?'btn-delete':'btn-cancel'" (onClick)="userId?deleteUser(userId):onCancel()" 
+                [label]="(userId?'button.delete':'button.cancel') | translate"></p-button>
         </div>
     </form>
 </p-dialog>

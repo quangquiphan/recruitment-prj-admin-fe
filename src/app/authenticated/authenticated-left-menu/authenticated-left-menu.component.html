@@ -5,8 +5,8 @@
             
             <ul class="flex flex-column w-full">
                 <li class="item cursor-pointer flex align-items-center" *ngFor="let item of leftMenuItems;" 
-                [ngClass]="selectItem == item.path?'item-active' : ''"
-                (click)="onSelectItem(item)" [routerLink]="item.path">
+                [ngClass]="selectedTab == item.id?'item-active' : ''"
+                (click)="selectedTab = item.id" [routerLink]="item.path">
                     <img [src]="item.icon" alt="" style="margin-right: 10px;">
                     <span>{{ item.label | translate }}</span>
                 </li>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="component overflow-x-auto">
+    <div class="component">
         <router-outlet></router-outlet>
     </div>
 </div>

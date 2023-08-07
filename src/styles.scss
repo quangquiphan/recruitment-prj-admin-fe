@@ -359,6 +359,10 @@ a {
     .p-button {
         border-color: var(--red-400) !important;
         background-color: var(--red-400) !important;
+
+        &:hover {
+            background-color: var(--red-700) !important;
+        }
     }
 }
 

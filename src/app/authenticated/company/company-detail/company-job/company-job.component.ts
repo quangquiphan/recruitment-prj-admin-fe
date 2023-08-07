@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { JobService } from 'src/app/services/job.service';
 
 @Component({
   selector: 'app-company-job',
@@ -6,170 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company-job.component.scss']
 })
 export class CompanyJobComponent implements OnInit{
+  @Input() companyId: string = '';
   jobs: any[] = [];
   paging: any = {
     pageNumber: 1,
-    pageSize: 2
+    pageSize: 10
   }
   totalElements: number = 0;
+  totalPages: number = 0;
   first: number = 0;
 
-  constructor() {}
+  constructor(
+    private jobService: JobService
+  ) {}
 
   ngOnInit(): void {
-    this.jobs = [
-      {
-        id: 0,
-        jobName: 'Developer',
-        salary: 'Expected',
-        expiryDate: '21/07/2023',
-        skills: [
-          {
-            id: 0,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 2,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 3,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 4,
-            name: 'Java',
-            level: 'Expert'
-          }
-        ],
-        languages: [
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      },
-      {
-        id: 1,
-        jobName: 'Developer',
-        salary: 'Expected',
-        expiryDate: '01/07/2023',
-        skills: [
-          {
-            id: 0,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 2,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 3,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 4,
-            name: 'Java',
-            level: 'Expert'
-          }
-        ],
-        languages: [
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      },
-      {
-        id: 2,
-        jobName: 'Developer',
-        salary: 'Expected',
-        expiryDate: '21/07/2023',
-        skills: [
-          {
-            id: 0,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 2,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 3,
-            name: 'Java',
-            level: 'Expert'
-          },
-          {
-            id: 4,
-            name: 'Java',
-            level: 'Expert'
-          }
-        ],
-        languages: [
-          {
-              id: 1,
-              name: "English",
-              level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          },
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      }
-    ]
-
+    this.getAllJobs();
     this.totalElements = this.jobs.length;
   }
 
@@ -181,5 +34,23 @@ export class CompanyJobComponent implements OnInit{
     let now = new Date();
 
     return expiry.getTime() - now.getTime() < 0;
+  }
+
+  getAllJobs() {
+    let params = {
+      companyId: this.companyId,
+      pageNumber: this.paging.pageNumber,
+      pageSize: this.paging.pageSize
+    }
+
+    this.jobService.getJobsByCompanyId(params).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.jobs = res.data.content;
+          this.totalElements = res.data.totalElements,
+          this.totalPages = res.data.totalPages;
+        }
+      }
+    )
   }
 }

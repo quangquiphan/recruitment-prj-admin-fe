@@ -1,0 +1,30 @@
+.skill-info {
+    height: max-content;
+    padding: 30px;
+    background-color: var(--primary-50);
+
+    &>div:nth-of-type(1) {
+        height: 42px;
+        padding-top: 5px;
+    }
+
+    div:last-child > i.pi {
+        font-size: 3rem !important;
+    }
+
+    .icon {
+        height: 50px;
+        width: 50px;
+        border: 1px solid var(--blue-800);
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+}
+
+.skill-tabs {
+    padding: 30px 20px;
+}
+
+.p-tabview-panels {
+    min-width: 830px;
+}

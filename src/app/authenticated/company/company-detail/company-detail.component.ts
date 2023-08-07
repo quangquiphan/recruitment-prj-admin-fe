@@ -37,7 +37,7 @@ export class CompanyDetailComponent implements OnInit{
   
   ngOnInit(): void {
     this.companyId = this.router.snapshot.paramMap.get('id');
-    this.getCompany(this.companyId);
+    this.getCompany(this.companyId);    
 
     this.selectedTabViewUrl();
   }
@@ -45,7 +45,6 @@ export class CompanyDetailComponent implements OnInit{
   getCompany(id: any) {
     this.companyService.getCompany(id).subscribe(
       res => {
-        console.log(res);
         this.company = res.data;
       }
     )

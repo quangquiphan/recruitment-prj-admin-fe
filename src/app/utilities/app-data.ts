@@ -1,6 +1,7 @@
 import AppConstant from "./app-constant";
+import { TranslateService } from '@ngx-translate/core';
 
-export class AppData {
+const AppData = {
     
 
     getListCity() {
@@ -258,30 +259,69 @@ export class AppData {
                 name: "Vĩnh Phúc"
             },
         ];
-    }
+    },
 
-    getCompanySize() {
+    getCompanySize(translate: TranslateService) {
         return [
             {
                 id: AppConstant.COMPANY_SIZE.FORM_11_TO_25,
-                label: `SIZE.${AppConstant.COMPANY_SIZE.FORM_11_TO_25}`
+                label: translate.instant(`SIZE.${AppConstant.COMPANY_SIZE.FORM_11_TO_25}`)
             },
             {
                 id: AppConstant.COMPANY_SIZE.FORM_26_TO_50,
-                label: `SIZE.${AppConstant.COMPANY_SIZE.FORM_26_TO_50}`
+                label: translate.instant(`SIZE.${AppConstant.COMPANY_SIZE.FORM_26_TO_50}`)
             },
             {
                 id: AppConstant.COMPANY_SIZE.FORM_51_TO_100,
-                label: `SIZE.${AppConstant.COMPANY_SIZE.FORM_51_TO_100}`
+                label: translate.instant(`SIZE.${AppConstant.COMPANY_SIZE.FORM_51_TO_100}`)
             },
             {
                 id: AppConstant.COMPANY_SIZE.FORM_101_TO_1000,
-                label: `SIZE.${AppConstant.COMPANY_SIZE.FORM_101_TO_1000}`
+                label: translate.instant(`SIZE.${AppConstant.COMPANY_SIZE.FORM_101_TO_1000}`)
             },
             {
                 id: AppConstant.COMPANY_SIZE.OVER_1000,
-                label: `SIZE.${AppConstant.COMPANY_SIZE.OVER_1000}`
+                label: translate.instant(`SIZE.${AppConstant.COMPANY_SIZE.OVER_1000}`)
             }
         ]
-    } 
+    },
+
+    getMajor(translate: TranslateService) {
+        return [
+            {
+                id: "it",
+                label: translate.instant('major.it')
+            },
+            {
+                id: "sale",
+                label: translate.instant('major.sale')
+            },
+            {
+                id: "accountant",
+                label: translate.instant('major.accountant')
+            },
+            {
+                id: "hr",
+                label: translate.instant('major.hr')
+            },
+            {
+                id: "QA/QC",
+                label: translate.instant('major.qa_qc')
+            },
+            {
+                id: "law",
+                label: translate.instant('major.law')
+            },
+            {
+                id: "education",
+                label: translate.instant('major.education')
+            },
+            {
+                id: "orther",
+                label: translate.instant('major.orther')
+            }
+        ]
+    }
 }
+
+export default AppData

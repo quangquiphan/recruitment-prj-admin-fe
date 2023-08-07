@@ -1,0 +1,49 @@
+.new {
+    position: absolute;
+    top: 55px;
+    right: 30px;
+}
+
+.skill-table {
+    padding: 0 20px 30px;
+
+    .search {
+        margin-bottom: 30px;
+        position: relative;
+
+        img {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
+        input {
+            margin-right: 20px;
+        }
+    }
+}
+
+p-button {
+    .p-button-label {
+        font-size: 13px;
+    }
+}
+
+.mr-20 {
+    margin-right: 20px;
+}
+
+:host::ng-deep {
+    .search input{
+        border-radius: 0;
+        padding-left: 40px !important;
+        border: 2px solid !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+    }
+
+    .new .p-button {
+        width: 100px !important;
+    }
+}

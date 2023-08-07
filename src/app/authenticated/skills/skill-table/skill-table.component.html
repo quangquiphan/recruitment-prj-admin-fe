@@ -1,0 +1,58 @@
+<p-button [label]="'label.new' | translate" 
+    (onClick)="onOpen('')" class="new"></p-button>
+<div class="skill-table">
+    <div class="w-8 flex justify-content-start align-items-center search">
+        <img src="../../../../assets/images/icons/search-normal.svg" [width]="24" alt="">
+        <input type="text" pInputText [(ngModel)]="keyword"
+            [placeholder]="(selectedTab == 0 ? 'message.search_by_skill_name' : 
+            'message.search_by_language_name') | translate">
+
+        <button class="btn-edit" pButton [label]="'button.search' | translate"
+            (click)="searchSkill(keyword)"></button>
+    </div>
+    <p-table class="table" [value]="skills" 
+        (onLazyLoad)="onLoadData($event)" [paginator]="true" [first]="first" [rowHover]="true"
+        [rows]="paging.pageSize" [paginator]="totalElements > paging.pageSize"
+        responsiveLayout="scroll" [totalRecords]="totalElements" [lazy]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{ 'label.id' | translate }}</th>
+                <th>{{ 'label.name' | translate }}</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+            <tr class="cursor-pointer" (click)="onOpen(item.id)">
+                <td class="text-ellipsis cursor-pointer">
+                    {{ item.id }}
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    {{ (selectedTab == 0) ? item.skillName : item.language }}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [header]="label | translate" [(visible)]="isShowSkillFormPopup" 
+    (onHide)="isShowSkillFormPopup = false" [draggable]="false" class="custom-dialog">
+
+    <form style="padding-top: 30px;" [formGroup]="skillForm">
+        <div class="flex flex-column" style="margin-bottom: 30px;">
+            <label for="name" class="font-size-13 font-bold" style="margin-bottom: 3px;">
+                {{ ((selectedTab == 0)?'label.skill_name' : 'label.language') | translate }}
+            </label>
+            <input type="text" id="name" pInputText formControlName="name">
+        </div>
+
+        <div class="flex justify-content-center">
+            <p-button (onClick)="onSubmit(isEdit)"
+                [label]="(isEdit?'button.edit':'button.save') | translate" 
+                class="mr-20" [disabled]="skillForm.invalid || disable"></p-button>
+            <p-button (onClick)="isEdit? onDelete() : onCancel()" 
+                [label]="(isEdit?'button.delete':'button.cancel') | translate" 
+                [ngClass]="isEdit?'btn-delete':'btn-cancel'">
+            </p-button>
+        </div>
+    </form>
+</p-dialog>

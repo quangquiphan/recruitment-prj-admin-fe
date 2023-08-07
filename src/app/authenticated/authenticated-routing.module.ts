@@ -9,6 +9,8 @@ import { JobComponent } from "./job/job.component";
 import { JobTableComponent } from "./job/job-table/job-table.component";
 import { JobDetailComponent } from "./job/job-detail/job-detail.component";
 import { CompanyDetailComponent } from "./company/company-detail/company-detail.component";
+import { SkillsComponent } from "./skills/skills.component";
+import { SkillComponent } from "./skills/skill/skill.component";
 
 const routes: Routes = [
     {
@@ -73,6 +75,20 @@ const routes: Routes = [
                                 component: JobDetailComponent
                             }
                         ]
+                    }
+                ]
+            },
+            {
+                path: 'skills',
+                component: SkillsComponent,
+                children: [
+                    {
+                        path: '',
+                        component: SkillComponent
+                    },
+                    {
+                        path: 'language',
+                        component: SkillComponent
                     }
                 ]
             }

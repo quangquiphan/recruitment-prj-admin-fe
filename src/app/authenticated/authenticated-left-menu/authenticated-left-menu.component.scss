@@ -71,6 +71,7 @@
     .component {
         width: calc(100% - 200px);
         overflow-y: auto;
+        overflow-x: hidden;
     }
 }
 

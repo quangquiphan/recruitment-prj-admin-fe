@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CandidateService } from 'src/app/services/candidate.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-candidate',
@@ -11,7 +12,7 @@ import { CandidateService } from 'src/app/services/candidate.service';
 export class CandidateComponent implements OnInit{
   candidates: any[] = [];
   id: string = '';
-
+  keyword: string = '';
   paging: any = {
     pageNumber: 1,
     pageSize: 10
@@ -22,7 +23,7 @@ export class CandidateComponent implements OnInit{
   showUserDetail: boolean = false;
 
   constructor(
-    private route: Router,
+    private userService: UserService,
     private translateService: TranslateService,
     private candidateService: CandidateService
   ) {}
@@ -31,7 +32,7 @@ export class CandidateComponent implements OnInit{
     
   }
 
-  onLoadData(ev: any) {
+  onLoadData(ev?: any) {
     if (ev) {
       this.paging.pageSize = ev.rows;
     }
@@ -39,6 +40,22 @@ export class CandidateComponent implements OnInit{
     this.paging.pageNumber = this.first + 1;
 
     this.candidateService.getAllCandidate(this.paging).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.candidates = res.data.content;
+          this.totalPages = res.data.totalPages;
+          this.totalElements = res.data.totalElements;
+        }
+      }
+    )
+  }
+
+  onSearch(keyword: string) {
+    if (!keyword) {
+      this.onLoadData();
+    }
+    
+    return this.userService.searchUser({keyword}).subscribe(
       res => {
         if (res.status === 200) {
           this.candidates = res.data.content;

@@ -43,4 +43,14 @@ export class CompanyService {
       )
     )
   }
+
+  searchCompany(params: any) : Observable<HttpResponse> {
+    return this.http.get<HttpResponse>(`${_prefix}/search`, {params}).pipe(
+      map(
+        result => {
+          return result;
+        }
+      )
+    )
+  }
 }
