@@ -74,9 +74,9 @@ export class CompanyAccountComponent implements OnInit{
 
     if (id) {
       this.getUserDetail(id);
-      return this.label = this.translateService.instant('label.add_company_member');
+      return this.label = this.translateService.instant('label.edit_company_member');
     }
-    return this.label = this.translateService.instant('label.edit_company_member');
+    return this.label = this.translateService.instant('label.add_company_member');
   }
 
   onCancel() {
