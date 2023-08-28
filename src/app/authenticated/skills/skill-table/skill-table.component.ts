@@ -294,8 +294,6 @@ import AppUtil from 'src/app/utilities/app-util';
         this.langService.getLang(this.id).subscribe(
           res => {
             if (res.status === 200) {
-              console.log(res.data);
-              
               this.skillForm.patchValue({
                 name: res.data.language
               })

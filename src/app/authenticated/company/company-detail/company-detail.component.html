@@ -17,8 +17,10 @@
             <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
                 [header]="tab.label | translate">
                 <app-company-general [company]="company" *ngIf="selectedTab  === 0"></app-company-general>
-                <app-company-job *ngIf="selectedTab === 1" [companyId]="companyId"></app-company-job>
-                <app-company-account *ngIf="selectedTab === 2"></app-company-account>
+                <app-company-job *ngIf="selectedTab === 1" [jobs]="jobShow" [totalElements]="jobs.length"
+                    (onReloadData)="onReloadJob($event)"></app-company-job>
+                <app-company-account *ngIf="selectedTab === 2" [accountMember]="accountMemberShow" [totalPages]="totalPages"
+                    (onReloadData)="onReloadAccount($event)"></app-company-account>
             </p-tabPanel>
         </p-tabView>
     </div>

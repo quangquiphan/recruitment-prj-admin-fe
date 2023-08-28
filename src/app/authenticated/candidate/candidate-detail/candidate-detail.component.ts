@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
+import { User } from 'src/app/model/user.model';
 import { CandidateService } from 'src/app/services/candidate.service';
 import AppConstant from 'src/app/utilities/app-constant';
 import { environment } from 'src/environment/environment';
@@ -13,129 +15,14 @@ export class CandidateDetailComponent implements OnChanges {
   @Input() userId: string = '';
   ev = environment;
   appConstant = AppConstant;
-  candidate: any;
-  workhistory: any[] = [];
-  education: any[] = [];
-  skill: any[] = [];
-  language: any[] = [];
-  user: any = {
-    avatar: ''
-  };
+  candidate: User | undefined;
   constructor(
     private candidateService: CandidateService,
     private translateService: TranslateService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log();
-    
     this.getCandidate(this.userId);
-    this.workhistory = [
-      {
-        id: 1,
-        companyName: "CTy ABCxyz",
-        fromDate: '12/12/2022',
-        toDate: '21/08/2023',
-        position: "Fullstack Developer",
-        description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>",
-        projects: [
-          {
-            projectName: "AXYZ",
-            fromDate: '12/12/2022',
-            toDate: '21/04/2023',
-            position: "Front-end developer",
-            teamSize: 12,
-            technology: "Angular, html/scss, bootstrap 5",
-            description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>"
-          },
-          {
-            projectName: "DCA",
-            fromDate: '12/01/2023',
-            toDate: '21/08/2023',
-            position: "Back-end developer",
-            teamSize: 10,
-            technology: "Java, mysql, spring boot",
-            description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>"
-          }
-        ]
-      },
-      {
-        id: 2,
-        companyName: "CTy ABCxyz",
-        fromDate: '12/12/2022',
-        toDate: '21/08/2023',
-        position: "Fullstack Developer",
-        description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>",
-        projects: [
-          {
-            projectName: "AXYZ",
-            fromDate: '12/12/2022',
-            toDate: '21/04/2023',
-            position: "Front-end developer",
-            teamSize: 12,
-            technology: "Angular, html/scss, bootstrap 5",
-            description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>"
-          },
-          {
-            projectName: "DCA",
-            fromDate: '12/01/2023',
-            toDate: '21/08/2023',
-            position: "Back-end developer",
-            teamSize: 10,
-            technology: "Java, mysql, spring boot",
-            description: "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dignissimos obcaecati commodi beatae explicabo excepturi maiores doloremque ipsum neque asperiores ratione vero, sit dolor quasi ab modi et itaque debitis!</p>"
-          }
-        ]
-      }
-    ]
-
-    this.education = [
-      {
-        id: 1,
-        schoolName: "Nguyen Tat Thanh University",
-        description: "",
-        course: "Information technology",
-        fromDate: "12/08/2019",
-        toDate: "",
-        current: true
-      }
-    ]
-
-    this.skill = [
-      {
-        id: 1,
-        name: "Java",
-        level: "Expert"
-      },
-      {
-        id: 2,
-        name: "NodeJs",
-        level: "Beginer"
-      },
-      {
-        id: 3,
-        name: "PHP",
-        level: "Immediate"
-      }
-    ]
-
-    this.language = [
-      {
-        id: 1,
-        name: "English",
-        level: "Immedidate"
-      },
-      {
-        id: 2,
-        name: "Japanese",
-        level: "Beginer"
-      },
-      {
-        id: 3,
-        name: "Korea",
-        level: "Beginer"
-      }
-    ]
   }
 
   getCandidate(id: string) {
@@ -143,8 +30,6 @@ export class CandidateDetailComponent implements OnChanges {
       res => {
         if (res.status === 200) {
           this.candidate = res.data;
-          console.log(this.candidate);
-          
         }
       }
     )
@@ -154,11 +39,24 @@ export class CandidateDetailComponent implements OnChanges {
     return firstName + " " + lastName;
   }
 
-  getYearExperience(year: any) {
-    if (year) {
-      return this.translateService.instant(`YEAR_EXPERIENCE.${year}`);
+  parseFromAndToDate(fromDate: string, toDate: string, isCurrent: boolean) {
+    if (isCurrent) {
+      return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE) + ' - ' +
+        this.translateService.instant('label.now');
     }
 
-    return 0;
+    return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE) + ' - ' +
+      moment(moment(toDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE)
+  }
+
+  parseYearExperience(yearExperience: string) {
+    if (!yearExperience) yearExperience = 'NON_EXPERIENCE';
+    return this.translateService.instant(`YEAR_EXPERIENCE.${yearExperience}`);
+  }
+
+  parseGender(gender: string) {
+    if (!gender) return '';
+
+    return this.translateService.instant(`gender.${gender}`)
   }
 }

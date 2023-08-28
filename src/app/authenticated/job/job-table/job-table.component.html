@@ -5,10 +5,9 @@
 
 <div class="job-table">
     <p-table class="table" [value]="jobs" (onLazyLoad)="loadData($event)"
-    [rows]="paging.pageSize" [paginator]="true" [rowHover]="true">
-    <!-- [(first)]="first" [lazy]="true"
-    [totalRecords]="totalPages"  
-    [paginator]="totalPages>1" responsiveLayout="scroll"> -->
+    [rows]="paging.pageSize" [paginator]="true" [rowHover]="true"
+    [(first)]="first" [lazy]="true" [totalRecords]="totalPages"
+    [paginator]="totalPages > 1" responsiveLayout="scroll">
         <ng-template pTemplate="header">
             <tr>
                 <th>{{ 'label.id' | translate }}</th>
@@ -28,10 +27,10 @@
                     {{ item.jobName }}
                 </td>
                 <td class="text-ellipsis cursor-pointer" (click)="onDetailCandidate(item.id)">
-                    {{ item.position }}
+                    {{ item.jobPosition }}
                 </td>
                 <td class="text-ellipsis cursor-pointer" (click)="onDetailCandidate(item.id)">
-                    {{ item.salary }}
+                    {{ parseSalary(item.salary) }}
                 </td>
                 <td class="text-ellipsis cursor-pointer" (click)="onDetailCandidate(item.id)">
                     {{ item.city }}

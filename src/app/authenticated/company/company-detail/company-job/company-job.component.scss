@@ -5,6 +5,17 @@
     border-radius: 5px;
     margin-bottom: 20px;
 
+    .avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 1px solid var(--primary-700);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+
     & > div {
         & > div,
         & > h4,

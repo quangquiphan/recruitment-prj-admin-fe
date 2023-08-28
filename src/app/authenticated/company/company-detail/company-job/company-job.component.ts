@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { JobService } from 'src/app/services/job.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
+import { Job } from 'src/app/model/job.model';
 
 @Component({
   selector: 'app-company-job',
@@ -7,50 +9,45 @@ import { JobService } from 'src/app/services/job.service';
   styleUrls: ['./company-job.component.scss']
 })
 export class CompanyJobComponent implements OnInit{
-  @Input() companyId: string = '';
-  jobs: any[] = [];
+  @Input() jobs: Job[] = [];
+  @Input() totalElements: number = 0;
+  @Output() onReloadData: EventEmitter<any> = new EventEmitter();
+  first: number = 0;
   paging: any = {
+    companyId: '',
     pageNumber: 1,
     pageSize: 10
   }
-  totalElements: number = 0;
-  totalPages: number = 0;
-  first: number = 0;
 
   constructor(
-    private jobService: JobService
+    private translateService: TranslateService,
   ) {}
 
   ngOnInit(): void {
-    this.getAllJobs();
-    this.totalElements = this.jobs.length;
+    
   }
 
-  onPageChange(ev: any) {
+  parseSalary(salary: string) {
+    if (!salary) return;
+    return this.translateService.instant(`salary.${salary}`);
   }
 
-  checkExpiryDateJob(expiryDate: string) {
-    let expiry = new Date(expiryDate);
+  parseDate(expiry: string) {
     let now = new Date();
-
-    return expiry.getTime() - now.getTime() < 0;
-  }
-
-  getAllJobs() {
-    let params = {
-      companyId: this.companyId,
-      pageNumber: this.paging.pageNumber,
-      pageSize: this.paging.pageSize
+    let expiryDate = new Date(moment(expiry).add(1, 'day').toDate()); 
+    let result = (expiryDate.getTime() - now.getTime())/(1000 * 60);
+    
+    if (Math.round(result/(60*24)) > 1) {
+      result = Math.round(result / (60*24));
+      return this.translateService.instant(`label.${result > 1 ? 'num_days' : 'num_day'}`, {number: result});
     }
 
-    this.jobService.getJobsByCompanyId(params).subscribe(
-      res => {
-        if (res.status === 200) {
-          this.jobs = res.data.content;
-          this.totalElements = res.data.totalElements,
-          this.totalPages = res.data.totalPages;
-        }
-      }
-    )
+    if (Math.round(result/(60)) > 1) {
+      result = Math.round(result / (60));
+      return this.translateService.instant(`label.${result > 1 ? 'num_hours' : 'num_hour'}`, {number: result});
+    }
+
+    result = Math.round(result);
+    return this.translateService.instant(`label.${result > 1 ? 'num_minutes' : 'num_minute'}`, {number: result});
   }
 }

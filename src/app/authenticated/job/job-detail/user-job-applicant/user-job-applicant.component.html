@@ -1,31 +1,29 @@
 <div class="user-job-applicant">
-    <div class="flex justify-content-between w-full" *ngFor="let u of users">
+    <div class="flex justify-content-between w-full" *ngFor="let u of userApplicant">
         <div class="flex flex-column" style="width: 78%;">
             <div class="flex align-items-center cursor-pointer" 
                 (click)="openPoup(u.id)">
-                <div class="icon flex justify-content-center align-items-center"
-                    [ngClass]="u.avatar?'' : 'icon-bg'">
-                    <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" alt="">
-                    <img *ngIf="u.avatar" [src]="u?.avatar" alt="">
+                <img *ngIf="u.avatar" [src]="u?.avatar" class="icon">
+                <div class="icon">
+                    <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%">
                 </div>
                 <div>
-                    <h4>{{ u.fullName }}</h4>
+                    <h4>{{ u.firstName + ' ' + u.lastName }}</h4>
                     <p style="margin-bottom: 0;">{{ u.position }}</p>
                 </div>
             </div>
     
-            <p>{{ 'Year experience : ' + u.yearExperience}}</p>
+            <p>{{ parseYearExperience(u.yearExperience) }}</p>
             <div class="flex flex-wrap">
-                <p-chip *ngFor="let item of u.skills">{{ item.name }}</p-chip>
-                <p-chip *ngFor="let item of u.languages">{{ item.name }}</p-chip>
+                <p-chip *ngFor="let item of u.skills">{{ item.skillName }}</p-chip>
+                <p-chip *ngFor="let item of u.languages">{{ item.language }}</p-chip>
             </div>
         </div>
     </div>
 </div>
 
-<p-paginator [rows]="paging.pageSize" [first]="first" [totalRecords]="users.length"
-    (onPageChange)="onPageChange($event)">
-</p-paginator>
+<p-paginator (onPageChange)="onReload.emit($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
+    [first]="first"></p-paginator>
 
 <p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
     [showHeader]="false">

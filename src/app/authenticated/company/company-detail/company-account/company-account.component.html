@@ -6,10 +6,9 @@
         <div class="w-full company-member">
             <div class="flex w-full justify-content-between align-items-center">
                 <div class="flex w-full justify-content-start align-items-center">
-                    <div
-                        class="icon flex align-items-center justify-content-center">
-                        <img *ngIf="i?.avatar" [src]="i?.avatar" width="100%" alt="">
-                        <img *ngIf="!i?.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%" alt="">
+                    <img *ngIf="i?.avatar" [src]="i?.avatar" class="icon">
+                    <div class="icon" *ngIf="!i?.avatar">
+                        <img src="../../../../../assets/images/TopWork-logo.png" width="100%">
                     </div>
                     <div>
                         <h3 style="margin-bottom: 3px;">{{ i?.lastName + " " + i?.firstName }}</h3>
@@ -25,7 +24,7 @@
     </div>
 </div>
 
-<p-paginator (onPageChange)="onPageChange($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
+<p-paginator (onPageChange)="onReloadData.emit($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
     [first]="first" *ngIf="totalElements > paging.pageSize"></p-paginator>
 
 <p-dialog [(visible)]="showMemberSetting" (onHide)="onCancel()" 

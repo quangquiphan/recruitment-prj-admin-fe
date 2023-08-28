@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-user-job-applicant',
@@ -6,125 +8,31 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user-job-applicant.component.scss']
 })
 export class UserJobApplicantComponent implements OnInit{
-  @Input() jobStatus: string = '';
+  @Input() userApplicant: User[] = [];
+  @Input() totalElements: number = 0;
+  @Output() onReload: EventEmitter<any> = new EventEmitter();
   showUserDetail: boolean = false;
   first: number = 0;
   paging: any = {
     pageNumber: 1,
-    pageSize: 1
+    pageSize: 10
   }
   userId: string = '';
   users: any [] = [];
 
-  constructor() {}
+  constructor(
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
-    this.users = [
-      {
-        id: 1,
-        fullName: "Full name",
-        position: "Fullstack developer",
-        yearExperience: "4 yr",
-        avatar: 'asd',
-        skills: [
-          {
-            id: 1,
-            name: "Java",
-            level: "Expert"
-          },
-          {
-            id: 2,
-            name: "Php",
-            level: "Beginner"
-          },
-          {
-            id: 3,
-            name: "Wordpress",
-            level: "Immediate"
-          }
-        ],
-        languages: [
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      },
-      {
-        id: 2,
-        fullName: "Full name",
-        position: "Fullstack developer",
-        yearExperience: "4 yr",
-        avatar: 'asd',
-        skills: [
-          {
-            id: 1,
-            name: "Java",
-            level: "Expert"
-          },
-          {
-            id: 2,
-            name: "Php",
-            level: "Beginner"
-          },
-          {
-            id: 3,
-            name: "Wordpress",
-            level: "Immediate"
-          }
-        ],
-        languages: [
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      },
-      {
-        id: 3,
-        fullName: "Full name",
-        position: "Fullstack developer",
-        yearExperience: "4 yr",
-        avatar: '',
-        skills: [
-          {
-            id: 1,
-            name: "Java",
-            level: "Expert"
-          },
-          {
-            id: 2,
-            name: "Php",
-            level: "Beginner"
-          },
-          {
-            id: 3,
-            name: "Wordpress",
-            level: "Immediate"
-          }
-        ],
-        languages: [
-          {
-            id: 1,
-            name: "English",
-            level: 'Expert'
-          }
-        ]
-      }
-    ]
-  }
-
-  onPageChange(ev: any) {
-    if (ev) {
-      this.paging.pageSize = ev.rows
-    }
-
-    this.paging.pageNumber = this.first + 1;
   }
 
   openPoup(id: string) {
     return [this.userId = id, this.showUserDetail = true];
+  }
+
+  parseYearExperience(yearExperience: string) {
+    if (!yearExperience) yearExperience = 'NON_EXPERIENCE';
+    return this.translateService.instant(`YEAR_EXPERIENCE.${yearExperience}`);
   }
 }

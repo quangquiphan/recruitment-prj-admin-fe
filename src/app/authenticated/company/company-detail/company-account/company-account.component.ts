@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,19 +14,20 @@ import AppUtil from 'src/app/utilities/app-util';
 })
 export class CompanyAccountComponent implements OnInit{
   accountForm: FormGroup = new FormGroup({});
-  accountMember: any[] = [];
-  paging: any = {
+  @Input() accountMember: any[] = [];
+  @Input() totalElements: number = 0;
+  @Input() totalPages: number = 0;
+  @Input() paging: any = {
     companyId: '',
     pageNumber: 1,
     pageSize: 10
   }
+  @Output() onReloadData: EventEmitter<any> = new EventEmitter();
   disable: boolean = false;
   label: string = '';
   userId: string = '';
   constant = AppConstant;
   first: number = 0;
-  totalElements: number = 0;
-  totalPages: number = 0;
   showMemberSetting: boolean = false;
 
   constructor(
@@ -47,14 +48,6 @@ export class CompanyAccountComponent implements OnInit{
 
   ngOnInit(): void {
     this.paging.companyId = this.activatedRoute.snapshot.paramMap.get('id');
-    
-    console.log(this.paging);
-
-    this.getCompanyMember();
-  }
-
-  onPageChange(ev: any) {
-
   }
 
   onSubmit(id: string) {
@@ -92,7 +85,7 @@ export class CompanyAccountComponent implements OnInit{
         if (res.status === 200) {
           AppUtil.getMessageSuccess(this.messageService, this.translateService, 
             'message.add_company_member_successfully');
-          this.getCompanyMember();
+          this.onReloadData.emit("reload");
           this.showMemberSetting = false;
           this.accountForm.reset();
         } else {
@@ -111,7 +104,7 @@ export class CompanyAccountComponent implements OnInit{
         if (res.status === 200) {
           AppUtil.getMessageSuccess(this.messageService, this.translateService, 
             'message.edit_company_member_successfully');
-          this.getCompanyMember();
+          this.onReloadData.emit("reload");
           this.showMemberSetting = false;
           this.accountForm.reset();
         } else {
@@ -130,7 +123,7 @@ export class CompanyAccountComponent implements OnInit{
         if (res.status === 200) {
           AppUtil.getMessageSuccess(this.messageService, this.translateService, 
             'message.delete_company_member_successfully');
-          this.getCompanyMember();
+          this.onReloadData.emit("reload");
           this.showMemberSetting = false;
           this.accountForm.reset();
         } else {
@@ -154,18 +147,6 @@ export class CompanyAccountComponent implements OnInit{
         }
       }
     )
-  }
-
-  getCompanyMember() {
-    return this.userService.getCompanyMember(this.paging).subscribe(
-      res => {
-        if (res.status === 200) {
-          this.accountMember = res.data.content;
-          this.totalElements = res.data.totalElements;
-          this.totalPages = res.data.totalPages;
-        }
-      }
-    )    
   }
 
   parseRole(role: string) {

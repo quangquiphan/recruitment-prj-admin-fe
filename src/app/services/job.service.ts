@@ -25,7 +25,7 @@ export class JobService {
   }
 
   getJobs(params: any) : Observable<HttpResponse> {
-    return this.http.get<HttpResponse>(`${_prefix}/all`, {params}).pipe(
+    return this.http.get<HttpResponse>(`${_prefix}/pages`, {params}).pipe(
       map(
         result => {
           return result;

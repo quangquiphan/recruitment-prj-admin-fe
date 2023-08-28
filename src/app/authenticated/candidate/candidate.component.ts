@@ -83,11 +83,8 @@ export class CandidateComponent implements OnInit{
     return item.cv?true:false;
   }
 
-  getYearExperience(year: any) {
-    if (year) {
-      return this.translateService.instant(`YEAR_EXPERIENCE.${year}`);
-    }
-
-    return 0;
+  getYearExperience(yearExperience: string) {
+    if (!yearExperience) yearExperience = 'NON_EXPERIENCE';
+    return this.translateService.instant(`YEAR_EXPERIENCE.${yearExperience}`);
   }
 }

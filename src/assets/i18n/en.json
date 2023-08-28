@@ -22,8 +22,9 @@
         "size": "Size",
         "company_name": "Company name",
         "new_company": "New company",
-        "year_experiences": "{{year}} year experiences",
-        "year_experience": "{{year}} year experience",
+        "n_year_experiences": "{{year}} year experiences",
+        "n_year_experience": "{{year}} year experience",
+        "year_experience": "Year experience",
         "account": "Account",
         "general": "General",
         "overview": "Overview",
@@ -39,7 +40,24 @@
         "skill_name": "Skill name",
         "langauge": "Language",
         "add_company_member": "Add company member",
-        "edit_company_member": "Edit company member"
+        "edit_company_member": "Edit company member",
+        "edit_skill": "Edit skill",
+        "edit_language": "Edit language",
+        "language": "Language",
+        "skill": "skill",
+        "education": "Education",
+        "work_history": "Work history",
+        "work_histories": "Work histories",
+        "information": "Information",
+        "projects": "Projects",
+        "ptoject": "Project",
+        "now": "Now",
+        "num_day": "{{number}} day",
+        "num_days": "{{number}} days",
+        "num_hour": "{{number}} hour",
+        "num_hours": "{{number}} hours",
+        "num_minute": "{{number}} minute",
+        "num_minutes": "{{number}} minutes"
     },
     "message": {
         "success": "Success",
@@ -89,14 +107,14 @@
         "OVER_1000": "> 1000"
     },
     "YEAR_EXPERIENCE": {
-        "NON_EXPERIENCE": "0", 
-        "UNDER_1_YEAR": "0 - 1", 
-        "ONE_YEAR": "1", 
-        "TWO_YEAR": "2", 
-        "THREE_YEAR": "3", 
-        "FOUR_YEAR": "4", 
-        "FIVE_YEAR": "5", 
-        "OVER_FIVE_YEAR": "5+"
+        "NON_EXPERIENCE": "0 year", 
+        "UNDER_1_YEAR": "Under 1 year", 
+        "ONE_YEAR": "1 year", 
+        "TWO_YEAR": "2 year", 
+        "THREE_YEAR": "3 year", 
+        "FOUR_YEAR": "4 year", 
+        "FIVE_YEAR": "5 year", 
+        "OVER_FIVE_YEAR": "5+ year"
     },
     "major": {
         "it": "IT",
@@ -112,5 +130,20 @@
         "COMPANY_ADMIN": "Admin",
         "COMPANY_MEMBER": "Member",
         "COMPANY_ADMIN_MEMBER": "Admin"
+    },
+    "salary": {
+        "UNDER_3": "Under 3 million VND",
+        "FROM_3_TO_5": "3 - 5 million VND",
+        "FROM_5_TO_10": "5 - 10 million VND",
+        "FROM_10_TO_18": "10 - 18 million VND",
+        "FROM_18_TO_25": "18 - 25 million VND",
+        "FROM_25_TO_50": "25 - 50 million VND",
+        "OVER_50": "50+ million VND",
+        "EXPECTED": "Expected"
+    },
+    "gender": {
+        "FE_MALE": "Fe male",
+        "MALE": "Male",
+        "ORTHER": "Orther"
     }
 }

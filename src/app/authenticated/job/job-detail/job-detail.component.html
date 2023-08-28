@@ -4,15 +4,24 @@
             <img src="../../../../assets/images/icons/arrow-left.svg" style="margin-right: 30px;">
         </div>
         <div class="flex flex-column">
-            <h2>Job name</h2>
-            <h3>job position</h3>
-            <span>salary</span>
+            <h2 style="margin-bottom: 10px;">{{ job?.jobName }}</h2>
+            <div class="flex justify-content-start align-items-center" style="margin-bottom: 10px;">
+                <img src="../../../../assets/images/icons/briefcase.svg" 
+                    [width]="24" style="margin-right: 10px;">
+                <h3>{{ job?.jobPosition }}</h3>
+            </div>
+
+            <div class="flex justify-content-start align-items-center" style="margin-bottom: 10px;">
+                <img src="../../../../assets/images/icons/dollar-circle.svg" 
+                    [width]="24" style="margin-right: 10px;">
+                <span>{{ parseSalary(job?.salary || '') }}</span>
+            </div>
             <div class="flex flex-wrap">
-                <p-chip>
-                    skill
+                <p-chip *ngFor="let item of job?.skills">
+                    {{ item.name }}
                 </p-chip>
-                <p-chip>
-                    language
+                <p-chip *ngFor="let item of job?.languages">
+                    {{ item.name }}
                 </p-chip>
             </div>
         </div>
@@ -22,7 +31,8 @@
         <p-tabView (onChange)="onChangeTabView($event)" [(activeIndex)]="selectedTab">
             <p-tabPanel *ngFor="let tab of tabViews" [selected]="tab.index === selectedTab" 
                 [header]="tab.label | translate">
-                <app-user-job-applicant [jobStatus]="jobStatus"></app-user-job-applicant>
+                <app-user-job-applicant [userApplicant]="userApplicantShow"
+                    [totalElements]="totalElements" (onReload)="onReload($event)"></app-user-job-applicant>
             </p-tabPanel>
         </p-tabView>
     </div>
