@@ -57,7 +57,10 @@
         "num_hour": "{{number}} hour",
         "num_hours": "{{number}} hours",
         "num_minute": "{{number}} minute",
-        "num_minutes": "{{number}} minutes"
+        "num_minutes": "{{number}} minutes",
+        "notifications": "Notifications",
+        "message": "Message",
+        "cv": "CV"
     },
     "message": {
         "success": "Success",
@@ -87,11 +90,15 @@
         "search_by_skill_name": "Search by skill name",
         "search_by_language_name": "Search by language name",
         "search_by_email_last_name_first_name_phone_number": "Search by last name, first name, email and phone number",
-        "search_by_email_company_name": "Search by email and company name"
+        "search_by_email_company_name": "Search by email and company name",
+        "search_by_job_name_job_position": "Search by job name, and job position",
+        "choose_city": "Choose city",
+        "APPLIED_JOB": "<b>{{name}}</b> has applied for the <b>{{position}}</b> position"
 
     },
     "button": {
         "sign_in": "Sign in",
+        "sign_out": "Sign out",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Edit",

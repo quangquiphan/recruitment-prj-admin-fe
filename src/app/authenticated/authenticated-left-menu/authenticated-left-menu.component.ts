@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { MenuItem } from 'primeng/api';
 import { AuthUser } from 'src/app/model/auth-user.model';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
@@ -12,6 +14,7 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
   authUser: AuthUser | undefined;
   selectedTab: any;
   href: any;
+  menuItems: MenuItem[] = []
   leftMenuItems: any[] = [
     {
       id: 0,
@@ -40,11 +43,19 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
       path: '/skills',
       size: 24,
       icon: '../../../assets/images/icons/colorfilter.svg'
+    },
+    {
+      id: 4,
+      label: 'label.notifications',
+      path: '/notifications',
+      size: 24,
+      icon: '../../../assets/images/icons/notification.svg'
     }
   ];
 
   constructor(
     private route: Router,
+    private translateService: TranslateService,
     private authenticateService: AuthenticateService
   ) {}
 
@@ -62,6 +73,30 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
         this.getSelectedTab(this.href);        
       }
     })
+
+    this.menuItems = [
+      {
+        icon: 'pi pi-sign-out',
+        label: this.translateService.instant('button.sign_out'),
+        command: () => {
+          this.logout();
+        }
+      }
+    ]
+  }
+
+  logout() {
+    return this.authenticateService.logout().subscribe(
+      res => {
+        if (res.status === 200) {
+          this.authenticateService.deleteToken();
+          this.authenticateService.clearSession();
+          this.authenticateService.doResetAuthUser();
+          this.authenticateService.setAuthUser(undefined);
+          this.route.navigate(['/sign-in']).then(r => {});
+        }
+      }
+    )
   }
 
   getInfo() {
@@ -75,18 +110,17 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
   }
 
   getSelectedTab(url: any) {
-    if (this.href.includes('candidate')) {
+    if (url.includes('candidate')) {
       this.selectedTab = 0;
-    } else if (this.href.includes('company')) {
+    } else if (url.includes('company')) {
       this.selectedTab = 1;
-    } else if (this.href.includes('job')) {
+    } else if (url.includes('job')) {
       this.selectedTab = 2;
-    }else if (this.href.includes('skills')) {
+    }else if (url.includes('skills')) {
       this.selectedTab = 3;
-    } 
-    //  else if (this.href.includes('company')) {
-    //   this.selectedTab = 1;
-    // }
+    }  else if (url.includes('notifications')) {
+      this.selectedTab = 4;
+    }
   }
 
   parserName(auth: AuthUser | undefined) {

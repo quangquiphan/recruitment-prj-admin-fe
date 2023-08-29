@@ -24,7 +24,7 @@ import AppUtil from 'src/app/utilities/app-util';
     totalPages: number = 0;
     paging:any = {
         pageNumber: 1,
-        pageSize: 10
+        pageSize: 5
     }
     first: number = 0;
     loading: boolean = false;
@@ -178,6 +178,8 @@ import AppUtil from 'src/app/utilities/app-util';
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService,
                 'message.add_skill_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )
@@ -196,7 +198,9 @@ import AppUtil from 'src/app/utilities/app-util';
               this.skillForm.reset();
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService, 
-                'message.add_language_failed')
+                'message.add_language_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )
@@ -222,6 +226,8 @@ import AppUtil from 'src/app/utilities/app-util';
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService, 
                 'message.edit_skill_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )
@@ -241,6 +247,8 @@ import AppUtil from 'src/app/utilities/app-util';
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService, 
                 'message.edit_language_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )
@@ -253,9 +261,14 @@ import AppUtil from 'src/app/utilities/app-util';
           res => {
             if (res.status === 200) {
               AppUtil.getMessageSuccess(this.messageService, this.translateService,
-                'message.delete_successfully')
+                'message.delete_skill_successfully')
               this.onLoadData();
               this.isShowSkillFormPopup = false;
+            } else {
+              AppUtil.getMessageFailed(this.messageService, this.translateService,
+                'message.delete_skill_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )
@@ -264,9 +277,14 @@ import AppUtil from 'src/app/utilities/app-util';
           res => {
             if (res.status === 200) {
               AppUtil.getMessageSuccess(this.messageService, this.translateService,
-                'message.delete_successfully')
+                'message.delete_language_successfully')
               this.onLoadData();
               this.isShowSkillFormPopup = false;
+            } else {
+              AppUtil.getMessageFailed(this.messageService, this.translateService,
+                'message.delete_language_failed');
+              this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             }
           }
         )

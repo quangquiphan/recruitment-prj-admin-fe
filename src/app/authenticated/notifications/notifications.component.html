@@ -1,0 +1,46 @@
+<div class="header flex w-full justify-content-between align-item-end">
+    <h3>{{ 'label.notifications' | translate }}</h3>
+</div>
+
+
+<div class="noti-table">
+    <div class="w-full flex justify-content-end mb-20 align-items-center search">
+        <p-dropdown [options]="companies" [optionValue]="'id'" [optionLabel]="'companyName'"
+            [(ngModel)]="companyId" (ngModelChange)="onLoadData($event)"></p-dropdown>
+    </div>
+
+    <p-table class="table" *ngIf="totalElements > 0" (onPage)="onLoadData($event)"
+        [rows]="paging.pageSize" [paginator]="true" [lazy]="true" [value]="notifications"
+        [rowHover]="true" [paginator]="totalElements > paging.pageSize" [totalRecords]="totalElements"
+        responsiveLayout="scroll" [loading]="loading">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>{{ 'label.id' | translate }}</th>
+                <th>{{ 'label.first_name' | translate }}</th>
+                <th>{{ 'label.last_name' | translate }}</th>
+                <th>{{ 'label.job_name' | translate }}</th>
+                <th>{{ 'label.message' | translate }}</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+            <tr class="cursor-pointer" [routerLink]="'/job/' + item.jobId + '/applied'">
+                <td class="text-ellipsis cursor-pointer">
+                    <span>{{ item.id }}</span>
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    <span>{{ item.firstName }}</span>
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    <span>{{ item.lastName }}</span>
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    <span>{{ item.jobName }}</span>
+                </td>
+                <td class="text-ellipsis cursor-pointer">
+                    <p [innerHTML]="parseContent(item.content, item.lastName, item.firstName, item.jobName)"></p>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

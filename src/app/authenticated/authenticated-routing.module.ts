@@ -11,6 +11,7 @@ import { JobDetailComponent } from "./job/job-detail/job-detail.component";
 import { CompanyDetailComponent } from "./company/company-detail/company-detail.component";
 import { SkillsComponent } from "./skills/skills.component";
 import { SkillComponent } from "./skills/skill/skill.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
 
 const routes: Routes = [
     {
@@ -91,6 +92,10 @@ const routes: Routes = [
                         component: SkillComponent
                     }
                 ]
+            },
+            {
+                path: 'notifications',
+                component: NotificationsComponent,
             }
         ]
     }

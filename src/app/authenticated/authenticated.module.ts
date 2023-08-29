@@ -21,6 +21,7 @@ import { CompanyAccountComponent } from './company/company-detail/company-accoun
 import { SkillsComponent } from './skills/skills.component';
 import { SkillTableComponent } from './skills/skill-table/skill-table.component';
 import { SkillComponent } from "./skills/skill/skill.component";
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { SkillComponent } from "./skills/skill/skill.component";
         SkillsComponent,
         SkillTableComponent,
         SkillComponent,
+        NotificationsComponent,
     ],
 
     imports: [

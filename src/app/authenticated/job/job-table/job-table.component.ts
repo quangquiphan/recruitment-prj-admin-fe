@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Job } from 'src/app/model/job.model';
 import { JobService } from 'src/app/services/job.service';
+import AppData from 'src/app/utilities/app-data';
 
 @Component({
   selector: 'app-job-table',
@@ -11,11 +12,13 @@ import { JobService } from 'src/app/services/job.service';
 })
 export class JobTableComponent implements OnInit {
   jobs: Job[] = [];
+  cities: any[] = [];
   paging: any = {
     pageNumber: 1,
     pageSize: 10
 
   }
+  keyword: string = '';
   totalPages: number = 0;
   totalElements: number = 0
   first: number = 0;
@@ -27,6 +30,7 @@ export class JobTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.cities = AppData.getListCity();
   }
 
   loadData(ev: any) {
@@ -41,6 +45,25 @@ export class JobTableComponent implements OnInit {
           this.jobs = res.data.content;
           this.totalElements = res.data.totalElements;
           this.totalPages = res.data.totalPages;
+        }
+      }
+    )
+  }
+
+  onSearch(ev?: any) {
+    if (ev) {
+      return this.jobService.searchJobs({searchKey: ev.value}).subscribe(
+        res => {
+          if (res.status === 200) {
+            this.jobs = res.data;
+          }
+        }
+      )  
+    }
+    return this.jobService.searchJobs({searchKey: this.keyword}).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.jobs = res.data;
         }
       }
     )

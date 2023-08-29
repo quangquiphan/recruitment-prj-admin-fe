@@ -1,0 +1,27 @@
+.noti-table {
+    padding: 30px 20px;
+}
+
+p-button {
+    .p-button-label {
+        font-size: 13px;
+    }
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.search {
+    padding-right: 50px;
+}
+
+:host::ng-deep {
+    .search .p-dropdown{
+        border-radius: 0;
+        border: 2px solid !important;
+        border-top: none !important;
+        border-right: none !important;
+        border-left: none !important;
+    }
+}

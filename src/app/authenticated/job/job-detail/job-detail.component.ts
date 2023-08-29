@@ -63,8 +63,13 @@ export class JobDetailComponent implements OnInit{
     return this.userJobService.getListApplicant(status, this.paging).subscribe(
       res => {
         if (res.status === 200) {
-          this.userApplicant = res.data.content;
-          this.totalElements = res.data.totalElements;
+          if (status === 'matches') {
+            this.userApplicant = res.data.content;
+            this.totalElements = res.data.totalElements;
+          } else {
+            this.userApplicant = res.data;
+            this.totalElements = res.data.length;
+          }
 
           for (let i = 0; i < this.userApplicant.length; i++) {
             if (i >= (this.paging.pageNumber - 1) 

@@ -15,8 +15,8 @@
     
             <p>{{ parseYearExperience(u.yearExperience) }}</p>
             <div class="flex flex-wrap">
-                <p-chip *ngFor="let item of u.skills">{{ item.skillName }}</p-chip>
-                <p-chip *ngFor="let item of u.languages">{{ item.language }}</p-chip>
+                <p-chip *ngFor="let item of u.skills">{{ item.name }}</p-chip>
+                <p-chip *ngFor="let item of u.languages">{{ item.name }}</p-chip>
             </div>
         </div>
     </div>

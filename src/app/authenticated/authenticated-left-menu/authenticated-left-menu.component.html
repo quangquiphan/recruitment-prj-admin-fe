@@ -13,7 +13,7 @@
             </ul>
         </div>
 
-        <div class="info flex align-items-center">
+        <div class="info flex align-items-center cursor-pointer" (click)="menu.toggle($event)">
             <div *ngIf="authUser?.avatar == null || authUser?.avatar == ''" 
                 class="icon icon-text flex justify-content-center align-items-center">
                 {{ parseAvatarText(authUser) }}
@@ -33,3 +33,5 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+
+<p-menu #menu [popup]="true" [model]="menuItems"></p-menu>

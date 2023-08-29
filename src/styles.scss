@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5, h6, p, ul, span, .pi, label {
     color: var(--primary-700) !important;
 }
 
-a {
+a, td, th {
    color: var(--primary-700) !important;
 }
 
@@ -332,6 +332,12 @@ a {
 
 .p-dropdown, .p-password, .p-inputtext {
     width: 100%;
+}
+
+.p-dropdown .p-dropdown-trigger {
+    background-image: url(./assets/images/icons/arrow-down.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
 }
 
 .p-icon {
