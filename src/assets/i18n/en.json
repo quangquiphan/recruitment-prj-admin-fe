@@ -93,7 +93,9 @@
         "search_by_email_company_name": "Search by email and company name",
         "search_by_job_name_job_position": "Search by job name, and job position",
         "choose_city": "Choose city",
-        "APPLIED_JOB": "<b>{{name}}</b> has applied for the <b>{{position}}</b> position"
+        "APPLIED_JOB": "<b>{{name}}</b> has applied for the <b>{{position}}</b> position",
+        "requested_on_date": "<b>{{name}}</b> has applied on {{date}}",
+        "rejected_on_date": "<b>{{name}}</b> was rejected applied on {{date}}"
 
     },
     "button": {

@@ -1,22 +1,35 @@
-<div class="user-job-applicant">
-    <div class="flex justify-content-between w-full" *ngFor="let u of userApplicant">
-        <div class="flex flex-column" style="width: 78%;">
-            <div class="flex align-items-center cursor-pointer" 
-                (click)="openPoup(u.id)">
-                <img *ngIf="u.avatar" [src]="u?.avatar" class="icon">
-                <div class="icon">
-                    <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%">
+<div class="user-job-applicants">
+    <div *ngFor="let u of userApplicant" class="w-full">
+        <div class="time" *ngIf="u.jobStatus == appConstant.JOB_STATUS.APPLIED
+            || u.jobStatus == appConstant.JOB_STATUS.REJECTED">
+            <span class="font-size-13"
+                [innerHTML]="parseLabelDate(u.jobStatus, u.createdDate, u.lastName, u.firstName)">
+            </span>
+        </div>
+        <div class="flex flex column justify-content-between w-full user-job-applicant-item">
+            <div class="flex flex-column w-full">
+                <div class="flex align-items-center cursor-pointer" 
+                    (click)="openPoup(u.id)" style="margin-bottom: 10px;">
+                    <img *ngIf="u.avatar" [src]="u?.avatar" class="icon">
+                    <div class="icon">
+                        <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%">
+                    </div>
+                    <div>
+                        <h4>{{ u.firstName + ' ' + u.lastName }}</h4>
+                        <p style="margin-bottom: 0;">{{ u.position }}</p>
+                    </div>
                 </div>
-                <div>
-                    <h4>{{ u.firstName + ' ' + u.lastName }}</h4>
-                    <p style="margin-bottom: 0;">{{ u.position }}</p>
+        
+                <div style="margin-bottom: 10px;" class="flex align-items-center">
+                    <span style="margin-right: 10px;" class="font-size-13">
+                        {{ 'label.year_experience' | translate }}:
+                    </span>
+                    <p class="font-size-13">{{ parseYearExperience(u.yearExperience) }}</p>
                 </div>
-            </div>
-    
-            <p>{{ parseYearExperience(u.yearExperience) }}</p>
-            <div class="flex flex-wrap">
-                <p-chip *ngFor="let item of u.skills">{{ item.name }}</p-chip>
-                <p-chip *ngFor="let item of u.languages">{{ item.name }}</p-chip>
+                <div class="flex flex-wrap">
+                    <p-chip *ngFor="let item of u.skills">{{ item.name }}</p-chip>
+                    <p-chip *ngFor="let item of u.languages">{{ item.name }}</p-chip>
+                </div>
             </div>
         </div>
     </div>

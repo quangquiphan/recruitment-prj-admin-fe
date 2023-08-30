@@ -77,7 +77,6 @@ export class JobDetailComponent implements OnInit{
               this.userApplicantShow.push(this.userApplicant[i]);
             }
           }
-          
         }
       }
     )
