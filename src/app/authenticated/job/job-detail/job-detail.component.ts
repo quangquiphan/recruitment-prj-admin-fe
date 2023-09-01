@@ -24,7 +24,7 @@ export class JobDetailComponent implements OnInit{
     major: '',
     jobId: '',
     pageNumber: 1,
-    pageSize: 10
+    pageSize: 5
   }
   tabViews: any[] = [
     {
@@ -63,16 +63,11 @@ export class JobDetailComponent implements OnInit{
     return this.userJobService.getListApplicant(status, this.paging).subscribe(
       res => {
         if (res.status === 200) {
-          if (status === 'matches') {
-            this.userApplicant = res.data.content;
-            this.totalElements = res.data.totalElements;
-          } else {
-            this.userApplicant = res.data;
-            this.totalElements = res.data.length;
-          }
+          this.userApplicant = res.data;
+          this.totalElements = res.data.length;
 
           for (let i = 0; i < this.userApplicant.length; i++) {
-            if (i >= (this.paging.pageNumber - 1) 
+            if (i >= (this.paging.pageNumber - 1) * this.paging.pageSize 
               && i < (this.paging.pageNumber * this.paging.pageSize)) {
               this.userApplicantShow.push(this.userApplicant[i]);
             }
@@ -123,12 +118,29 @@ export class JobDetailComponent implements OnInit{
   onReload(ev: any) {
     this.userApplicantShow = [];
 
+    if (ev.value) {
+      this.paging.pageNumber = ev.first/ev.rows + 1;
+
+      return this.userJobService.getListApplicant('matches', this.paging).subscribe(
+        res => {
+          if (res.status === 200) {
+              this.userApplicantShow = res.data.content;
+              this.totalElements = res.data.totalElements;  
+            console.log("it work ...");
+            
+            console.log(this.userApplicantShow);
+            
+          }
+        }
+      )
+    }
+
     if (ev) {
       this.paging.pageNumber = ev.first/ev.rows + 1;
     }
 
     for (let i = 0; i < this.userApplicant.length; i++) {
-      if (i >= (this.paging.pageNumber - 1) 
+      if (i >= (this.paging.pageNumber - 1) * this.paging.pageSize
           && i < (this.paging.pageNumber * this.paging.pageSize)) {
         this.userApplicantShow.push(this.userApplicant[i]);
       }

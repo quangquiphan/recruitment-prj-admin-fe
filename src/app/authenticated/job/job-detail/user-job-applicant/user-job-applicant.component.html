@@ -1,21 +1,23 @@
 <div class="user-job-applicants">
     <div *ngFor="let u of userApplicant" class="w-full">
         <div class="time" *ngIf="u.jobStatus == appConstant.JOB_STATUS.APPLIED
-            || u.jobStatus == appConstant.JOB_STATUS.REJECTED">
-            <span class="font-size-13"
-                [innerHTML]="parseLabelDate(u.jobStatus, u.createdDate, u.lastName, u.firstName)">
+            || u.jobStatus == appConstant.JOB_STATUS.REJECTED" 
+            [ngClass]="(u.jobStatus == appConstant.JOB_STATUS.REJECTED) ? 'time-reject' : ''">
+            <span class="font-size-13" [ngClass]="(u.jobStatus == appConstant.JOB_STATUS.REJECTED) ? 'text-reject' : ''"
+                [innerHTML]="parseLabelDate(u)">
             </span>
         </div>
-        <div class="flex flex column justify-content-between w-full user-job-applicant-item">
+        <div class="flex flex column justify-content-between w-full user-job-applicant-item"
+        [ngClass]="(u.jobStatus == appConstant.JOB_STATUS.REJECTED) ? 'user-job-applicant-item-reject' : ''">
             <div class="flex flex-column w-full">
                 <div class="flex align-items-center cursor-pointer" 
-                    (click)="openPoup(u.id)" style="margin-bottom: 10px;">
+                    (click)="openPoup(u)" style="margin-bottom: 10px;">
                     <img *ngIf="u.avatar" [src]="u?.avatar" class="icon">
                     <div class="icon">
                         <img *ngIf="!u.avatar" src="../../../../../assets/images/TopWork-logo.png" width="100%">
                     </div>
                     <div>
-                        <h4>{{ u.firstName + ' ' + u.lastName }}</h4>
+                        <h4>{{ u.lastName + ' ' + u.firstName }}</h4>
                         <p style="margin-bottom: 0;">{{ u.position }}</p>
                     </div>
                 </div>
@@ -36,7 +38,7 @@
 </div>
 
 <p-paginator (onPageChange)="onReload.emit($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
-    [first]="first"></p-paginator>
+    [first]="first" *ngIf="totalElements > paging.pageSize"></p-paginator>
 
 <p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
     [showHeader]="false">
