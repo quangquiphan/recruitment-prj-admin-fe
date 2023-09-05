@@ -1,0 +1,38 @@
+<div class="header">
+    <h3>{{ 'label.dashboard' | translate }}</h3>
+</div>
+
+<div class="dashboard w-full flex align-items-end justify-content-center">
+    <div class="flex flex-column align-items-center justify-content-end" style="margin-right: 20px;">
+        <div class="total flex flex-column justify-content-center align-items-center">
+            <h3>{{ 'label.candidates' | translate }}</h3>
+            <span>{{ dashboard?.totalCandidates }}</span>
+        </div>
+        <div [style]="{height : (dashboard?.totalCandidates < 30 ? 
+            dashboard?.totalCandidates * 10 + 'px' : '300px') }" 
+            style="width: 80px; background-color: var(--indigo-100); 
+                border: 1px solid var(--indigo-400);"></div>
+    </div>
+
+    <div class="flex flex-column align-items-center justify-content-end" style="margin-right: 20px;">
+        <div class="total flex flex-column justify-content-center align-items-center">
+            <h3>{{ 'label.jobs' | translate }}</h3>
+            <span>{{ dashboard?.totalJobs }}</span>
+        </div>
+        <div [style]="{height : (dashboard?.totalJobs < 30 ? 
+            dashboard?.totalJobs * 10 + 'px' : '300px') }" 
+            style="width: 80px; background-color: var(--teal-100); 
+                border: 1px solid var(--teal-400);"></div>
+    </div>
+
+    <div class="flex flex-column align-items-center justify-content-end">
+        <div class="total flex flex-column justify-content-center align-items-center">
+            <h3>{{ 'label.companies' | translate }}</h3>
+            <span>{{ dashboard?.totalCompanies }}</span>
+        </div>
+        <div [style]="{height : (dashboard?.totalCompanies < 30 ? 
+            dashboard?.totalCompanies * 10 + 'px' : '300px') }" 
+            style="width: 80px; background-color: var(--orange-100); 
+                border: 1px solid var(--orange-400);"></div>
+    </div>
+</div>

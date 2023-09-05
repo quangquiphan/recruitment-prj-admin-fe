@@ -12,6 +12,7 @@ import { CompanyDetailComponent } from "./company/company-detail/company-detail.
 import { SkillsComponent } from "./skills/skills.component";
 import { SkillComponent } from "./skills/skill/skill.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 const routes: Routes = [
     {
@@ -19,6 +20,10 @@ const routes: Routes = [
         component: AuthenticatedComponent,
         canActivate: [AuthGuard],
         children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent
+            },
             {
                 path: 'candidate',
                 component: CandidateComponent

@@ -60,7 +60,12 @@
         "num_minutes": "{{number}} minutes",
         "notifications": "Notifications",
         "message": "Message",
-        "cv": "CV"
+        "cv": "CV",
+        "candidates": "Candidates",
+        "dashboard": "Dashboard",
+        "companies": "Companies",
+        "remove": "Remove",
+        "confirm_delete": "Confirm delete"
     },
     "message": {
         "success": "Success",
@@ -95,8 +100,10 @@
         "choose_city": "Choose city",
         "APPLIED_JOB": "<b>{{name}}</b> has applied for the <b>{{position}}</b> position",
         "requested_on_date": "<b>{{name}}</b> has applied on {{date}}",
-        "rejected_on_date": "<b>{{name}}</b> was rejected applied on {{date}}"
-
+        "rejected_on_date": "<b>{{name}}</b> was rejected applied on {{date}}",
+        "remove_candidate_successfully": "Remove candidate successfully!",
+        "remove_candidate_failed": "Remove candidate failed!",
+        "do_u_wanna_remove_candidate": "Do you wanna remove candidate?"
     },
     "button": {
         "sign_in": "Sign in",

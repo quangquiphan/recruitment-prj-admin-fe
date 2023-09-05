@@ -18,34 +18,41 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
   leftMenuItems: any[] = [
     {
       id: 0,
+      label: 'label.dashboard',
+      path: '/dashboard',
+      size: 24,
+      icon: '../../../assets/images/icons/dashboard.svg'
+    },
+    {
+      id: 1,
       label: 'label.candidate',
       path: '/candidate',
       size: 24,
       icon: '../../../assets/images/icons/users.svg'
     },
     {
-      id: 1,
+      id: 2,
       label: 'label.company',
       path: '/company',
       size: 24,
       icon: '../../../assets/images/icons/buliding.svg'
     },
     {
-      id: 2,
+      id: 3,
       label: 'label.job',
       path: '/job',
       size: 24,
       icon: '../../../assets/images/icons/briefcase.svg'
     },
     {
-      id: 3,
+      id: 4,
       label: 'label.skills',
       path: '/skills',
       size: 24,
       icon: '../../../assets/images/icons/colorfilter.svg'
     },
     {
-      id: 4,
+      id: 5,
       label: 'label.notifications',
       path: '/notifications',
       size: 24,
@@ -110,16 +117,18 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
   }
 
   getSelectedTab(url: any) {
-    if (url.includes('candidate')) {
+    if (url.includes('dashboard')) {
       this.selectedTab = 0;
-    } else if (url.includes('company')) {
+    } else if (url.includes('candidate')) {
       this.selectedTab = 1;
-    } else if (url.includes('job')) {
+    } else if (url.includes('company')) {
       this.selectedTab = 2;
-    }else if (url.includes('skills')) {
+    }else if (url.includes('job')) {
       this.selectedTab = 3;
-    }  else if (url.includes('notifications')) {
+    }  else if (url.includes('skills')) {
       this.selectedTab = 4;
+    }  else if (url.includes('notifications')) {
+      this.selectedTab = 5;
     }
   }
 

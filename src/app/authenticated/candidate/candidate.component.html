@@ -1,5 +1,5 @@
 <div class="header">
-    <h3>Candidate</h3>
+    <h3>{{ 'label.candidates' | translate }}</h3>
 </div>
 
 <div class="candidate-table">
@@ -26,31 +26,43 @@
                 <th>{{ 'label.email' | translate }}</th>
                 <th>{{ 'label.phone_number' | translate }}</th>
                 <th>{{ 'label.cv' | translate }}</th>
+                <th></th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-item>
-            <tr (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
-                <td class="text-ellipsis cursor-pointer">
+            <tr style="height: 50px;">
+                <td class="text-ellipsis cursor-pointer" 
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ item.id }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td class="text-ellipsis cursor-pointer"
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ item.firstName }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td class="text-ellipsis cursor-pointer"
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ item.lastName }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td class="text-ellipsis cursor-pointer"
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ getYearExperience(item.yearExperience) }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td class="text-ellipsis cursor-pointer"
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ item.email }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td class="text-ellipsis cursor-pointer"
+                    (click)="checkCV(item)?openPdf(item.id):openUserDetailPopup(item.id)">
                     {{ item.phoneNumber }}
                 </td>
                 <td class="text-ellipsis cursor-pointer">
                    <img *ngIf="item.cv" src="../../../assets/images/icons/document.svg">
+                </td>
+                <td class="w-full h-full flex justify-content-center align-items-center" 
+                    style="height: 50px !important;">
+                    <img src="../../../assets/images/icons/menu-dot.svg" class="cursor-pointer" 
+                        [width]="24" (click)=" menu.toggle($event); userId = item.id;">
                 </td>
             </tr>
         </ng-template>
@@ -63,3 +75,19 @@
     <i class="lose-popup pi pi-times-circle cursor-pointer" (click)="showUserDetail = false"></i>
     <app-candidate-detail *ngIf="showUserDetail" [userId]="id"></app-candidate-detail>
 </p-dialog>
+
+<p-dialog [(visible)]="isConfirmDelete" [draggable]="false" 
+    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false">
+    <div style="padding-top: 30px; margin-bottom: 30px;" class="text-center font-size-14">
+        {{ 'message.do_u_wanna_remove_candidate' | translate }}
+    </div>
+
+    <div>
+        <p-button [label]="'button.delete' | translate" class="btn-delete"
+            (onClick)="onDelete()"></p-button>
+        <p-button [label]="'button.cancel' | translate"
+            (onClick)="isConfirmDelete = false"></p-button>
+    </div>
+</p-dialog>
+
+<p-menu #menu [model]="item" [popup]="true"></p-menu>

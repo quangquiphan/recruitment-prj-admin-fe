@@ -5,9 +5,11 @@
         </div>
         <div class="flex align-items-end">
             <img src="../../../../assets/images/icons/buliding.svg" *ngIf="false" style="margin: 0 10px 0 !important;">
-            <div class="icon flex justify-content-start align-items-center">
+            <div class="icon flex justify-content-start align-items-center" *ngIf="!company?.avatar">
                 <img src="../../../../assets/images/TopWork-logo.png" width="100%" alt="">
             </div>
+            <img [src]="company?.avatar" *ngIf="company?.avatar" 
+                class="icon flex justify-content-start align-items-center">
             <h2>{{ company?.companyName }}</h2>
         </div>
     </div>

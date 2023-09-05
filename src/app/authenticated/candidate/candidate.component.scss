@@ -32,6 +32,10 @@
     }
 }
 
+.btn-delete {
+    margin-right: 30px;
+}
+
 :host::ng-deep {
     .search input{
         border-radius: 0;

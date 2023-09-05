@@ -22,6 +22,7 @@ import { SkillsComponent } from './skills/skills.component';
 import { SkillTableComponent } from './skills/skill-table/skill-table.component';
 import { SkillComponent } from "./skills/skill/skill.component";
 import { NotificationsComponent } from './notifications/notifications.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
         SkillTableComponent,
         SkillComponent,
         NotificationsComponent,
+        DashboardComponent,
     ],
 
     imports: [

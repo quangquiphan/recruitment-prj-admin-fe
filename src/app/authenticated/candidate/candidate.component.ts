@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { MenuItem, MessageService } from 'primeng/api';
 import { CandidateService } from 'src/app/services/candidate.service';
 import { UserService } from 'src/app/services/user.service';
+import AppUtil from 'src/app/utilities/app-util';
 
 @Component({
   selector: 'app-candidate',
@@ -12,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CandidateComponent implements OnInit{
   candidates: any[] = [];
   id: string = '';
+  userId: string = '';
   keyword: string = '';
   paging: any = {
     pageNumber: 1,
@@ -21,15 +24,25 @@ export class CandidateComponent implements OnInit{
   totalPages: number = 0;
   first: number = 0;
   showUserDetail: boolean = false;
+  item: MenuItem[] = [];
+  isConfirmDelete: boolean = false;
 
   constructor(
     private userService: UserService,
+    private messageService: MessageService,
     private translateService: TranslateService,
     private candidateService: CandidateService
   ) {}
 
   ngOnInit(): void {
-    
+    this.item = [
+      {
+        label: this.translateService.instant('label.remove'),
+        command: () => {
+          this.isConfirmDelete = true;
+        }
+      }
+    ]
   }
 
   onLoadData(ev?: any) {
@@ -45,6 +58,23 @@ export class CandidateComponent implements OnInit{
           this.candidates = res.data.content;
           this.totalPages = res.data.totalPages;
           this.totalElements = res.data.totalElements;
+        }
+      }
+    )
+  }
+
+  onDelete() {
+    return this.userService.deleteUser(this.userId).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.isConfirmDelete = false;
+          this.onLoadData();
+          AppUtil.getMessageSuccess(this.messageService, this.translateService,
+            'message.remove_candidate_successfully')
+        } else {
+          this.isConfirmDelete = false;
+          AppUtil.getMessageFailed(this.messageService, this.translateService,
+            'message.remove_candidate_failed')
         }
       }
     )
