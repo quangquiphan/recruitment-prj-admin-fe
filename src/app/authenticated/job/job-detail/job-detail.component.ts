@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { toArray } from 'lodash';
+import { MessageService } from 'primeng/api';
 import { Job } from 'src/app/model/job.model';
 import { JobService } from 'src/app/services/job.service';
 import { UserJobService } from 'src/app/services/user-job.service';
 import AppConstant from 'src/app/utilities/app-constant';
+import AppUtil from 'src/app/utilities/app-util';
 
 @Component({
   selector: 'app-job-detail',
@@ -20,6 +22,7 @@ export class JobDetailComponent implements OnInit{
   jobStatus: string  = '';
   selectedTab: number = 0;
   totalElements: number = 0;
+  isConfirmDelete: boolean = false;
   paging: any = {
     major: '',
     jobId: '',
@@ -46,6 +49,7 @@ export class JobDetailComponent implements OnInit{
     private router: ActivatedRoute,
     private jobService: JobService,
     private userJobService: UserJobService,
+    private messageService: MessageService,
     private translateService: TranslateService,
   ) {
 
@@ -72,6 +76,23 @@ export class JobDetailComponent implements OnInit{
               this.userApplicantShow.push(this.userApplicant[i]);
             }
           }
+        }
+      }
+    )
+  }
+
+  onDelete() {
+    return this.jobService.deleteJob(this.job?.id || '').subscribe(
+      res => {
+        if (res.status === 200) {
+          this.isConfirmDelete = false;
+          this.onBack();
+          AppUtil.getMessageSuccess(this.messageService, this.translateService,
+            'message.delete_job_successfully');
+        } else {
+          this.isConfirmDelete = false;
+          AppUtil.getMessageFailed(this.messageService, this.translateService,
+            'message.delete_job_failed')
         }
       }
     )

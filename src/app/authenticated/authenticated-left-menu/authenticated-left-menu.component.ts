@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { AuthUser } from 'src/app/model/auth-user.model';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import AppConstant from 'src/app/utilities/app-constant';
+import AppUtil from 'src/app/utilities/app-util';
 
 @Component({
   selector: 'app-authenticated-left-menu',
@@ -11,7 +14,9 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
   styleUrls: ['./authenticated-left-menu.component.scss']
 })
 export class AuthenticatedLeftMenuComponent implements OnInit{
+  changePasswordForm: FormGroup = new FormGroup({});
   authUser: AuthUser | undefined;
+  isChangePasswordPopup: boolean = false;
   selectedTab: any;
   href: any;
   menuItems: MenuItem[] = []
@@ -62,9 +67,26 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
 
   constructor(
     private route: Router,
+    private fb: FormBuilder,
+    private messageService: MessageService,
     private translateService: TranslateService,
     private authenticateService: AuthenticateService
-  ) {}
+  ) {
+    this.changePasswordForm = this.fb.group({
+      oldPassword: ['', [
+        Validators.required,
+        Validators.pattern(AppConstant.PATTERNS.PASSWORD)
+      ]],
+      newPassword: ['', [
+        Validators.required,
+        Validators.pattern(AppConstant.PATTERNS.PASSWORD)
+      ]],
+      confirmNewPassword: ['', [
+        Validators.required,
+        Validators.pattern(AppConstant.PATTERNS.PASSWORD)
+      ]]
+    })
+  }
 
   ngOnInit(): void {
     this.initMenu();
@@ -88,6 +110,13 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
         command: () => {
           this.logout();
         }
+      },
+      {
+        icon: 'pi pi-eye',
+        label: this.translateService.instant('label.change_password'),
+        command: () => {
+          this.isChangePasswordPopup = true;
+        }
       }
     ]
   }
@@ -101,6 +130,28 @@ export class AuthenticatedLeftMenuComponent implements OnInit{
           this.authenticateService.doResetAuthUser();
           this.authenticateService.setAuthUser(undefined);
           this.route.navigate(['/sign-in']).then(r => {});
+        }
+      }
+    )
+  }
+
+  onChangePassword() {
+    let params = {
+      oldPassword: AppUtil.hasMD5(this.changePasswordForm.value.oldPassword),
+      newPassword: AppUtil.hasMD5(this.changePasswordForm.value.newPassword),
+      confirmNewPassword: AppUtil.hasMD5(this.changePasswordForm.value.confirmNewPassword),
+    }
+    
+    return this.authenticateService.changePassword(AppUtil.toSnakeCaseKey(params)).subscribe(
+      res => {
+        if (res.status === 200) {
+          AppUtil.getMessageSuccess(this.messageService, this.translateService,
+            'message.change_password_successfully');
+          this.isChangePasswordPopup = false;
+          this.changePasswordForm.reset();
+        } else {
+          AppUtil.getMessageFailed(this.messageService, this.translateService,
+            'message.change_password_failed');
         }
       }
     )

@@ -26,25 +26,31 @@
                 <th>{{ 'label.email' | translate }}</th>
                 <th>{{ 'label.phone_number' | translate }}</th>
                 <th>{{ 'label.size' | translate }}</th>
+                <th></th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-item>
-            <tr (click)="onNavigateToDetail(item.id)" class="cursor-pointer">
-                <td class="text-ellipsis cursor-pointer">
+            <tr>
+                <td (click)="onNavigateToDetail(item.id)" class="text-ellipsis cursor-pointer">
                     {{ item.id }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td (click)="onNavigateToDetail(item.id)" class="text-ellipsis cursor-pointer">
                     {{ item.companyName }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td (click)="onNavigateToDetail(item.id)" class="text-ellipsis cursor-pointer">
                     {{ item.email }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td (click)="onNavigateToDetail(item.id)" class="text-ellipsis cursor-pointer">
                     {{ item.phoneNumber }}
                 </td>
-                <td class="text-ellipsis cursor-pointer">
+                <td (click)="onNavigateToDetail(item.id)" class="text-ellipsis cursor-pointer">
                     {{ parseSize(item.size) }}
+                </td>
+                <td class="w-full h-full flex justify-content-center align-items-center" 
+                    style="height: 50px !important;">
+                    <img src="../../../assets/images/icons/menu-dot.svg" class="cursor-pointer" 
+                        [width]="24" (click)=" menu.toggle($event); companyId = item.id;">
                 </td>
             </tr>
         </ng-template>
@@ -92,4 +98,20 @@
                 class="btn-cancel"></p-button>
         </div>
     </form>
+</p-dialog>
+
+<p-menu #menu [model]="item" [popup]="true"></p-menu>
+
+<p-dialog [(visible)]="isConfirmDelete" [draggable]="false"  class="custom-dialog"
+    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false">
+    <div style="padding-top: 30px; margin-bottom: 30px;" class="text-center font-size-14">
+        {{ 'message.do_u_wanna_remove_company' | translate }}
+    </div>
+
+    <div class="flex justify-content-center">
+        <p-button [label]="'button.delete' | translate" class="btn-delete"
+            (onClick)="onDelete()"></p-button>
+        <p-button [label]="'button.cancel' | translate"
+            (onClick)="isConfirmDelete = false"></p-button>
+    </div>
 </p-dialog>

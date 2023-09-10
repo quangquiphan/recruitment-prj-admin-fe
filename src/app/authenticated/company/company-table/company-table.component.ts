@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { escape } from 'lodash';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { CompanyService } from 'src/app/services/company.service';
 import AppConstant from 'src/app/utilities/app-constant';
 import AppData from 'src/app/utilities/app-data';
@@ -15,12 +15,15 @@ import AppUtil from 'src/app/utilities/app-util';
   styleUrls: ['./company-table.component.scss']
 })
 export class CompanyTableComponent implements OnInit{
-  companyForm: FormGroup = new FormGroup({})
+  companyForm: FormGroup = new FormGroup({});
   companies: any[] = [];
   isShowAddCompanyPopup: boolean = false;
+  isConfirmDelete: boolean = false;
   loading: boolean = false;
   companySizes: any = [];
+  item: MenuItem[] = [];
   keyword: string = '';
+  companyId: string = '';
   paging: any = {
     pageNumber: 1,
     pageSize: 10
@@ -47,6 +50,14 @@ export class CompanyTableComponent implements OnInit{
 
   ngOnInit(): void {
     this.onLoadData();
+    this.item = [
+      {
+        label: this.translateService.instant('label.remove'),
+        command: () => {
+          this.isConfirmDelete = true;
+        }
+      }
+    ]
   }
 
   getAllCompany(paging: any) {
@@ -84,11 +95,30 @@ export class CompanyTableComponent implements OnInit{
             this.isShowAddCompanyPopup = false;
             this.companyForm.reset();
           } else {
-            AppUtil.getMessageSuccess(this.messageService, this.translateService,
+            AppUtil.getMessageFailed(this.messageService, this.translateService,
               'message.add_company_failed');
           }
         }
       )
+  }
+
+  onDelete() {
+    return this.companyService.deleteCompany(this.companyId).subscribe(
+      res => {
+        if (res.status === 200) {
+          this.isConfirmDelete = false;
+          this.companyId = '';
+          AppUtil.getMessageSuccess(this.messageService, this.translateService,
+            'message.delete_company_successfully');
+            this.getAllCompany(this.paging);
+        } else {
+          this.isConfirmDelete = false;
+          this.companyId = '';
+          AppUtil.getMessageFailed(this.messageService, this.translateService,
+            'message.delete_company_failed')
+        }
+      }
+    )
   }
 
   onCancel() {

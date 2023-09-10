@@ -34,4 +34,38 @@
     </div>
 </div>
 
+<p-dialog class="custom-dialog" [header]="'label.change_password' | translate"
+    [(visible)]="isChangePasswordPopup" (onHide)="isChangePasswordPopup = false">
+    <form [formGroup]="changePasswordForm" style="padding-top: 30px;">
+        <div class="flex flex-column w-full margin-bottom-10">
+            <label for="pwd" class="font-size-14 font-bold" style="margin-bottom: 2px;">
+                {{ 'label.old_password' | translate }}
+            </label>
+            <p-password id="pwd" class="w-full" formControlName="oldPassword"
+                [toggleMask]="true"></p-password>
+        </div>
+
+        <div class="flex flex-column w-full margin-bottom-10">
+            <label for="pwd" class="font-size-14 font-bold" style="margin-bottom: 2px;">
+                {{ 'label.new_password' | translate }}
+            </label>
+            <p-password id="pwd" class="w-full" formControlName="newPassword"
+                [toggleMask]="true"></p-password>
+        </div>
+
+        <div class="flex flex-column w-full" style="margin-bottom: 25px;">
+            <label for="pwd" class="font-size-14 font-bold" style="margin-bottom: 2px;">
+                {{ 'label.confirm_new_password' | translate }}
+            </label>
+            <p-password id="pwd" class="w-full" formControlName="confirmNewPassword"
+                [toggleMask]="true"></p-password>
+        </div>
+
+        <div class="flex justify-content-center">
+            <p-button [label]="'label.change_password' | translate" 
+               [disabled]="changePasswordForm.invalid" (onClick)="onChangePassword()"></p-button>
+        </div>
+    </form>
+</p-dialog>
+
 <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>

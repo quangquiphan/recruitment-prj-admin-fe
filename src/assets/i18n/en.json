@@ -65,7 +65,11 @@
         "dashboard": "Dashboard",
         "companies": "Companies",
         "remove": "Remove",
-        "confirm_delete": "Confirm delete"
+        "confirm_delete": "Confirm delete",
+        "change_password": "Change password",
+        "old_password": "Old password",
+        "new_password": "New password",
+        "confirm_new_password": "Confirm new password"  
     },
     "message": {
         "success": "Success",
@@ -103,7 +107,13 @@
         "rejected_on_date": "<b>{{name}}</b> was rejected applied on {{date}}",
         "remove_candidate_successfully": "Remove candidate successfully!",
         "remove_candidate_failed": "Remove candidate failed!",
-        "do_u_wanna_remove_candidate": "Do you wanna remove candidate?"
+        "do_u_wanna_remove_candidate": "Do you wanna remove candidate?",
+        "do_u_wanna_remove_company": "Do you wanna remove company?",
+        "do_u_wanna_remove_job": "Do you wanna remove job {{job}}?",
+        "delete_company_failed": "Delete company failed!",
+        "delete_company_successfully": "Delete company successfully!",
+        "delete_job_successfully": "Delete job successfully!",
+        "delete_job_failed": "Delete job failed!"
     },
     "button": {
         "sign_in": "Sign in",
@@ -143,9 +153,9 @@
         "orther": "Orther"
     },
     "role": {
-        "COMPANY_ADMIN": "Admin",
+        "COMPANY_ADMIN": "Admin company system",
         "COMPANY_MEMBER": "Member",
-        "COMPANY_ADMIN_MEMBER": "Admin"
+        "COMPANY_ADMIN_MEMBER": "Admin company member"
     },
     "salary": {
         "UNDER_3": "Under 3 million VND",

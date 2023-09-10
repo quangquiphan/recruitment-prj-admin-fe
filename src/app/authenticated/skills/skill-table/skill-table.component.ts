@@ -264,6 +264,7 @@ import AppUtil from 'src/app/utilities/app-util';
                 'message.delete_skill_successfully')
               this.onLoadData();
               this.isShowSkillFormPopup = false;
+              this.skillForm.reset();
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService,
                 'message.delete_skill_failed');
@@ -279,6 +280,7 @@ import AppUtil from 'src/app/utilities/app-util';
               AppUtil.getMessageSuccess(this.messageService, this.translateService,
                 'message.delete_language_successfully')
               this.onLoadData();
+              this.skillForm.reset();
               this.isShowSkillFormPopup = false;
             } else {
               AppUtil.getMessageFailed(this.messageService, this.translateService,

@@ -34,6 +34,16 @@ export class CompanyService {
     )
   }
 
+  deleteCompany(id: any) : Observable<HttpResponse> {
+    return this.http.delete<HttpResponse>(`${_prefix}/${id}`).pipe(
+      map(
+        result => {
+          return result;
+        }
+      )
+    )
+  }
+
   getAllCompany(params: any) : Observable<HttpResponse> {
     return this.http.get<HttpResponse>(`${_prefix}`, {params}).pipe(
       map(

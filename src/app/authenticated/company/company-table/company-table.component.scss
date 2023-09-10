@@ -27,6 +27,10 @@ p-button {
     }
 }
 
+.btn-delete {
+    margin-right: 20px;
+}
+
 :host::ng-deep {
     .search input{
         border-radius: 0;

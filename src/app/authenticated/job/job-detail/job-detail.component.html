@@ -4,7 +4,12 @@
             <img src="../../../../assets/images/icons/arrow-left.svg" style="margin-right: 30px;">
         </div>
         <div class="flex flex-column">
-            <h2 style="margin-bottom: 10px;">{{ job?.jobName }}</h2>
+            <div style="margin-bottom: 10px;" class="flex align-items-center">
+                <h2 style="margin-right: 10px;">{{ job?.jobName }}</h2>
+                <i class="pi pi-delete-left cursor-pointer" 
+                    style="font-size: 26px !important; color: var(--red-500) !important;"
+                    (click)="isConfirmDelete = true"></i>
+            </div>
             <div class="flex justify-content-start align-items-center" style="margin-bottom: 10px;">
                 <img src="../../../../assets/images/icons/briefcase.svg" 
                     [width]="24" style="margin-right: 10px;">
@@ -37,3 +42,17 @@
         </p-tabView>
     </div>
 </div>
+
+<p-dialog [(visible)]="isConfirmDelete" [draggable]="false" class="custom-dialog"
+    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false">
+    <div style="padding-top: 30px; margin-bottom: 30px;" class="text-center font-size-14">
+        {{ 'message.do_u_wanna_remove_job' | translate :{job: job?.jobName} }}
+    </div>
+
+    <div class="flex justify-content-center">
+        <p-button [label]="'button.delete' | translate" class="btn-delete"
+            (onClick)="onDelete()"></p-button>
+        <p-button [label]="'button.cancel' | translate"
+            (onClick)="isConfirmDelete = false"></p-button>
+    </div>
+</p-dialog>
