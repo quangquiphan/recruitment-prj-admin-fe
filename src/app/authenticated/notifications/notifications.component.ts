@@ -17,7 +17,7 @@ export class NotificationsComponent implements OnInit{
     companyId: '',
     filter: 'ALL',
     pageNumber: 1,
-    pageSize: 10
+    pageSize: 5
   }
   totalElements: number = 0;
   totalPages: number = 0;

@@ -6,7 +6,8 @@
 <div class="noti-table">
     <div class="w-full flex justify-content-end mb-20 align-items-center search">
         <p-dropdown [options]="companies" [optionValue]="'id'" [optionLabel]="'companyName'"
-            [(ngModel)]="companyId" (ngModelChange)="onLoadData($event)"></p-dropdown>
+            [(ngModel)]="companyId" (ngModelChange)="onLoadData($event)" [appendTo]="'body'"
+            [filter]="true"></p-dropdown>
     </div>
 
     <p-table class="table" *ngIf="totalElements > 0" (onPage)="onLoadData($event)"

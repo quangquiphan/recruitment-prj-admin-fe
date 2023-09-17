@@ -116,7 +116,8 @@
         "delete_job_failed": "Delete job failed!",
         "change_password_successfully": "Change password successfully!",
         "sign_in_failed": "Sigin in failed!",
-        "permission_access_denied": "Permission access denied!"
+        "permission_access_denied": "Permission access denied!",
+        "search_by_job_name_position": "Search by job name, position"
     },
     "button": {
         "sign_in": "Sign in",
