@@ -39,8 +39,8 @@
 <p-paginator (onPageChange)="onReload.emit($event)" [rows]="paging.pageSize" [totalRecords]="totalElements" 
     [first]="first" *ngIf="totalElements > paging.pageSize"></p-paginator>
 
-<p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup" 
-    [showHeader]="false">
+<p-dialog [(visible)]="showUserDetail" [draggable]="false" class="user-detail-popup custom-dialog" 
+    [showHeader]="false" [blockScroll]="true">
     <i class="lose-popup pi pi-times-circle cursor-pointer" (click)="showUserDetail = false"></i>
     <app-candidate-detail *ngIf="showUserDetail" [userId]="userId"></app-candidate-detail>
 </p-dialog>

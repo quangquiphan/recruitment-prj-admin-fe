@@ -28,7 +28,7 @@
     [first]="first" *ngIf="totalElements > paging.pageSize"></p-paginator>
 
 <p-dialog [(visible)]="showMemberSetting" (onHide)="onCancel()" 
-    [header]="label" class="custom-dialog">
+    [header]="label" class="custom-dialog" [blockScroll]="true">
     <form [formGroup]="accountForm">
         <div class="flex justify-content-between">
             <div class="flex flex-column">

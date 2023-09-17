@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<p-dialog class="custom-dialog" [header]="'label.change_password' | translate"
+<p-dialog class="custom-dialog" [header]="'label.change_password' | translate" [blockScroll]="true"
     [(visible)]="isChangePasswordPopup" (onHide)="isChangePasswordPopup = false">
     <form [formGroup]="changePasswordForm" style="padding-top: 30px;">
         <div class="flex flex-column w-full margin-bottom-10">

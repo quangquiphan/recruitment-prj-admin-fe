@@ -15,8 +15,8 @@
             (click)="onSearch(keyword)"></button>
     </div>
 
-    <p-table class="table" *ngIf="totalElements > 0" (onLazyLoad)="onLoadData($event)"
-    [rows]="paging.pageSize" [paginator]="true" [lazy]="true" [value]="companies"
+    <p-table class="table" *ngIf="totalElements > 0" [value]="companies"
+    [rows]="paging.pageSize" [paginator]="true" [lazy]="true" (onLazyLoad)="onLoadData($event)"
     [rowHover]="true" [paginator]="totalElements > paging.pageSize" [totalRecords]="totalElements"
      responsiveLayout="scroll" [loading]="loading">
         <ng-template pTemplate="header">
@@ -58,7 +58,8 @@
 </div>
 
 <p-dialog [header]="'label.new_company' | translate" [(visible)]="isShowAddCompanyPopup" 
-    (onHide)="isShowAddCompanyPopup = false" [draggable]="false" class="custom-dialog">
+    (onHide)="isShowAddCompanyPopup = false" [draggable]="false" class="custom-dialog"
+    [blockScroll]="true">
 
     <form style="padding-top: 30px;" [formGroup]="companyForm">
         <div class="flex flex-column" style="margin-bottom: 10px;">
@@ -103,7 +104,8 @@
 <p-menu #menu [model]="item" [popup]="true"></p-menu>
 
 <p-dialog [(visible)]="isConfirmDelete" [draggable]="false"  class="custom-dialog"
-    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false">
+    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false"
+    [blockScroll]="true">
     <div style="padding-top: 30px; margin-bottom: 30px;" class="text-center font-size-14">
         {{ 'message.do_u_wanna_remove_company' | translate }}
     </div>

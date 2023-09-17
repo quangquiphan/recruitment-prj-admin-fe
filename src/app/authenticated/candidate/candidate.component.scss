@@ -3,13 +3,13 @@
 }
 
 .lose-popup {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 35px;
 }
 
 .lose-popup.pi {
-    font-size: 2rem !important;
+    font-size: 1.35rem !important;
     color: var(--primary-600);
 }
 

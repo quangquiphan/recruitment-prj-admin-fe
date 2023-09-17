@@ -34,8 +34,8 @@
     </p-table>
 </div>
 
-<p-dialog [header]="label | translate" [(visible)]="isShowSkillFormPopup" 
-    (onHide)="isShowSkillFormPopup = false" [draggable]="false" class="custom-dialog">
+<p-dialog [header]="label | translate" [(visible)]="isShowSkillFormPopup" [blockScroll]="true"
+    (onHide)="onCancel()" [draggable]="false" class="custom-dialog">
 
     <form style="padding-top: 30px;" [formGroup]="skillForm">
         <div class="flex flex-column" style="margin-bottom: 30px;">

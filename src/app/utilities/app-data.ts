@@ -124,7 +124,7 @@ const AppData = {
             },
             {
                 id: 29,
-                name: "Thành phố Hồ Chí Minh"
+                name: "Tp.Hồ Chí Minh"
             },
             {
                 id: 30,

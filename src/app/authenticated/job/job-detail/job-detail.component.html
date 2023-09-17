@@ -44,7 +44,8 @@
 </div>
 
 <p-dialog [(visible)]="isConfirmDelete" [draggable]="false" class="custom-dialog"
-    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false">
+    [header]="'label.confirm_delete' | translate" (onHide)="isConfirmDelete = false"
+    [blockScroll]="true">
     <div style="padding-top: 30px; margin-bottom: 30px;" class="text-center font-size-14">
         {{ 'message.do_u_wanna_remove_job' | translate :{job: job?.jobName} }}
     </div>

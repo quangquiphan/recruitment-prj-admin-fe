@@ -22,6 +22,7 @@ export class JobTableComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0
   first: number = 0;
+  city: string = '';
 
   constructor(
     private route: Router,
@@ -50,8 +51,9 @@ export class JobTableComponent implements OnInit {
     )
   }
 
-  onSearch(ev?: any) {
-    if (ev) {
+  onSearchByCity(ev?: any) {
+    if (ev.value) {
+      this.keyword = '';
       return this.jobService.searchJobs({searchKey: ev.value}).subscribe(
         res => {
           if (res.status === 200) {
@@ -60,6 +62,13 @@ export class JobTableComponent implements OnInit {
         }
       )  
     }
+
+    return;
+  }
+
+  onSearch() {
+    this.city = '';
+    
     return this.jobService.searchJobs({searchKey: this.keyword}).subscribe(
       res => {
         if (res.status === 200) {

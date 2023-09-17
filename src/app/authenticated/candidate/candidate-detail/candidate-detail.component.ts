@@ -41,12 +41,12 @@ export class CandidateDetailComponent implements OnChanges {
 
   parseFromAndToDate(fromDate: string, toDate: string, isCurrent: boolean) {
     if (isCurrent) {
-      return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE) + ' - ' +
+      return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.MONTH_YEAR) + ' - ' +
         this.translateService.instant('label.now');
     }
 
-    return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE) + ' - ' +
-      moment(moment(toDate).toDate()).format(AppConstant.DATE_FORMAT.SHORT_DATE)
+    return moment(moment(fromDate).toDate()).format(AppConstant.DATE_FORMAT.MONTH_YEAR) + ' - ' +
+      moment(moment(toDate).toDate()).format(AppConstant.DATE_FORMAT.MONTH_YEAR)
   }
 
   parseYearExperience(yearExperience: string) {

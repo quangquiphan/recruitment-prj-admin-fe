@@ -9,8 +9,9 @@
         <input type="text" pInputText [(ngModel)]="keyword"
             [placeholder]="'message.search_by_email_company_name' | translate">
 
-        <p-dropdown [options]="cities" [optionValue]="'name'" [optionLabel]="'name'"
-            [placeholder]="'message.choose_city' | translate" (onChange)="onSearch($event)"></p-dropdown>
+        <p-dropdown [options]="cities" [optionValue]="'name'" [optionLabel]="'name'" [(ngModel)]="city"
+            [placeholder]="'message.choose_city' | translate" (onChange)="onSearchByCity($event)"
+            [filter]="true"></p-dropdown>
 
         <button class="btn-edit" pButton [label]="'button.search' | translate"
             (click)="onSearch()"></button>

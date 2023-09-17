@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { concat } from 'lodash';
+import { TranslateService } from '@ngx-translate/core';
+import { MessageService } from 'primeng/api';
 import { AuthUser } from 'src/app/model/auth-user.model';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import AppConstant from 'src/app/utilities/app-constant';
@@ -19,7 +20,9 @@ export class SignInComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private route: Router,
-    private authenticateService: AuthenticateService
+    private messageService: MessageService,
+    private translateService: TranslateService,
+    private authenticateService: AuthenticateService,
   ) {
     this.signInForm = this.fb.group({
       email: [ '', [
@@ -51,6 +54,10 @@ export class SignInComponent implements OnInit{
         if (res.status === 200) {
           this.authenticateService.setToken(res.data.accessToken);
           this.route.navigate(['/candidate']).then(r => {});
+        } else {
+          AppUtil.getMessageFailed(this.messageService, this.translateService,
+            'message.sign_in_failed');
+          this.signInForm.reset();
         }
       }
     )

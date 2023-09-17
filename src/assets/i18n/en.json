@@ -73,7 +73,7 @@
     },
     "message": {
         "success": "Success",
-        "Failed": "Failed",
+        "failed": "Failed",
         "add_company_member_successfully": "Add company member successfully!",
         "add_company_member_failed": "Add company member failed!",
         "edit_company_member_successfully": "Edit company member successfully!",
@@ -113,7 +113,10 @@
         "delete_company_failed": "Delete company failed!",
         "delete_company_successfully": "Delete company successfully!",
         "delete_job_successfully": "Delete job successfully!",
-        "delete_job_failed": "Delete job failed!"
+        "delete_job_failed": "Delete job failed!",
+        "change_password_successfully": "Change password successfully!",
+        "sign_in_failed": "Sigin in failed!",
+        "permission_access_denied": "Permission access denied!"
     },
     "button": {
         "sign_in": "Sign in",

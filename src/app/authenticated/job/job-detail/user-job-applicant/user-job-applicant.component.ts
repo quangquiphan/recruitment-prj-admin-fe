@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
-import { User } from 'src/app/model/user.model';
 import { CandidateService } from 'src/app/services/candidate.service';
 import AppConstant from 'src/app/utilities/app-constant';
 
@@ -32,10 +31,10 @@ export class UserJobApplicantComponent implements OnInit{
   }
 
   openPoup(user: any) {
-    if (user.cv || user.cv !== null) {
+    if (user.cv ) {
       return this.openPdf(user.userId);
     }
-    return [this.userId = user.user.Id, this.showUserDetail = true];
+    return [this.userId = user.userId, this.showUserDetail = true];
   }
 
   openPdf(id: string) {
