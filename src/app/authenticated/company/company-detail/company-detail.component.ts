@@ -114,6 +114,7 @@ export class CompanyDetailComponent implements OnInit{
 
   onReloadAccount(ev :any){
     if (ev === 'reload') {
+      this.accountMemberShow = [];
       return this.getCompanyMember();
     }
 
