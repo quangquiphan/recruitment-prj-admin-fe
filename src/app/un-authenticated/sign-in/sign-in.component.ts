@@ -53,7 +53,7 @@ export class SignInComponent implements OnInit{
       res => {
         if (res.status === 200) {
           this.authenticateService.setToken(res.data.accessToken);
-          this.route.navigate(['/candidate']).then(r => {});
+          this.route.navigate(['/dashboard']).then(r => {});
         } else {
           AppUtil.getMessageFailed(this.messageService, this.translateService,
             'message.sign_in_failed');

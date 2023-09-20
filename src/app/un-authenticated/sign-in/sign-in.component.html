@@ -17,7 +17,8 @@
             <label for="pwd" class="font-size-14 font-bold" style="margin-bottom: 2px;">
                 {{ 'label.password' | translate }}
             </label>
-            <p-password inputId="pwd" formControlName="passwordHash" class="w-full pwd"></p-password>
+            <p-password inputId="pwd" formControlName="passwordHash" class="w-full pwd"
+                [toggleMask]="true"></p-password>
 
             <a class="font-size-13 forgot-pwd cursor-pointer" [routerLink]="'/forgot-password'">
                 {{ 'label.forgot_password' | translate }}
